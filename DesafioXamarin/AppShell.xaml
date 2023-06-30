@@ -37,8 +37,14 @@
             ContentTemplate="{DataTemplate local:HomePage}" />
         <ShellContent 
             Title="Sugestões" 
-            Icon="icon_feed.png" 
+            Icon="icon_feed.png"
+            Route="SugestoesPage"
             ContentTemplate="{DataTemplate local:SugestoesPage}" />
+        <ShellContent 
+            Title="Departamentos" 
+            Icon="icon_feed.png"
+            Route="DepartamentosPage"
+            ContentTemplate="{DataTemplate local:DepartamentosPage}" />
     </TabBar>
 
     <!--
