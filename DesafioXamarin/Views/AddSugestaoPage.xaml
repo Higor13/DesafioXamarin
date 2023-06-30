@@ -6,17 +6,66 @@
              Title="New Item"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true">
+
     <ContentPage.Content>
-        <StackLayout Spacing="3" Padding="15">
-            <Label Text="Text" FontSize="Medium" />
-            <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Description" FontSize="Medium" />
-            <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
-            <StackLayout Orientation="Horizontal">
-                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+        <StackLayout
+            Spacing="3"
+            Padding="15">
+
+            <Label
+                Text="Nome"
+                FontSize="Medium" />
+            <Entry
+                Text="{Binding Nome, Mode=TwoWay}"
+                FontSize="Medium" />
+
+            <Label
+                Text="Departamento"
+                FontSize="Medium" />
+            <Picker
+                Title="Selecione">
+                <Picker.ItemsSource>
+                    <x:Array
+                        Type="{x:Type x:String}">
+                        <x:String>Administrativo</x:String>
+                        <x:String>Financeiro</x:String>
+                        <x:String>RH</x:String>
+                        <x:String>Comercial</x:String>
+                        <x:String>Produção</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Label
+                Text="Sugestão"
+                FontSize="Medium" />
+            <Editor
+                Text="{Binding Sugestao, Mode=TwoWay}"
+                AutoSize="TextChanges"
+                FontSize="Medium"
+                Margin="0" />
+
+            <Label
+                Text="Justificativa"
+                FontSize="Medium" />
+            <Editor
+                Text="{Binding Justificativa, Mode=TwoWay}"
+                AutoSize="TextChanges"
+                FontSize="Medium"
+                Margin="0" />
+
+            <StackLayout
+                Orientation="Horizontal">
+                <Button
+                    Text="Cancelar"
+                    Command="{Binding CancelarCommand}"
+                    HorizontalOptions="FillAndExpand"/>
+                <Button
+                    Text="Salvar"
+                    Command="{Binding SalvarCommand}"
+                    HorizontalOptions="FillAndExpand"/>
             </StackLayout>
+
         </StackLayout>
     </ContentPage.Content>
-    
 </ContentPage>

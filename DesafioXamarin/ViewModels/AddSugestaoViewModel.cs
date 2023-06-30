@@ -9,56 +9,71 @@ namespace DesafioXamarin.ViewModels
 {
     public class AddSugestaoViewModel : BaseViewModel
     {
-        private string text;
-        private string description;
+        private string _nome;
+        private string _departamento;
+        private string _sugestao;
+        private string _justificativa;
+
+
+        public Command SalvarCommand { get; }
+        public Command CancelarCommand { get; }
+
+        public string Nome
+        {
+            get => _nome;
+            set => SetProperty(ref _nome, value);
+        }
+
+        public string Sugestao
+        {
+            get => _sugestao;
+            set => SetProperty(ref _sugestao, value);
+        }
+
+        public string Departamento
+        {
+            get => _departamento;
+            set => SetProperty(ref _departamento, value);
+        }
+
+        public string Justificativa
+        {
+            get => _justificativa;
+            set => SetProperty(ref _justificativa, value);
+        }
 
         public AddSugestaoViewModel()
         {
-            SaveCommand = new Command(OnSave, ValidateSave);
-            CancelCommand = new Command(OnCancel);
+            SalvarCommand = new Command(SalvarAsync, ValidateSave);
+            CancelarCommand = new Command(CancelarAsync);
+
             this.PropertyChanged +=
-                (_, __) => SaveCommand.ChangeCanExecute();
+                (_, __) => SalvarCommand.ChangeCanExecute();
         }
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(text)
-                && !String.IsNullOrWhiteSpace(description);
+            return !String.IsNullOrWhiteSpace(_nome)
+                && !String.IsNullOrWhiteSpace(_sugestao)
+                && !String.IsNullOrWhiteSpace(_justificativa);
         }
 
-        public string Text
+        private async void CancelarAsync()
         {
-            get => text;
-            set => SetProperty(ref text, value);
-        }
-
-        public string Description
-        {
-            get => description;
-            set => SetProperty(ref description, value);
-        }
-
-        public Command SaveCommand { get; }
-        public Command CancelCommand { get; }
-
-        private async void OnCancel()
-        {
-            // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
         }
 
-        private async void OnSave()
+        private async void SalvarAsync()
         {
             Item newItem = new Item()
             {
                 Id = Guid.NewGuid().ToString(),
-                Text = Text,
-                Description = Description
+                Text = Nome,
+                Description = Sugestao
             };
 
             await DataStore.AddItemAsync(newItem);
 
-            // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
         }
     }
