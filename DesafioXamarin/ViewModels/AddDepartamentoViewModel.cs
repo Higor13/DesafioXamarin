@@ -1,4 +1,5 @@
-﻿using DesafioXamarin.Views;
+﻿using DesafioXamarin.Models;
+using DesafioXamarin.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,17 +9,38 @@ namespace DesafioXamarin.ViewModels
 {
     public class AddDepartamentoViewModel : BaseViewModel
     {
-        public Command LoginCommand { get; }
+        private string _departamento;
+        public string Departamento
+        {
+            get => _departamento;
+            set => SetProperty(ref _departamento, value);
+        }
+
+        public Command SalvarCommand { get; }
+        public Command CancelarCommand { get; }
 
         public AddDepartamentoViewModel()
         {
-            LoginCommand = new Command(OnLoginClicked);
+            SalvarCommand = new Command(SalvarAsync, ValidateSave);
+            CancelarCommand = new Command(CancelarAsync);
+
+            this.PropertyChanged +=
+                (_, __) => SalvarCommand.ChangeCanExecute();
         }
 
-        private async void OnLoginClicked(object obj)
+        private bool ValidateSave()
         {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            //await Shell.Curent.GoToAsync($"//{nameof(AboutPage)}");
+            return !String.IsNullOrWhiteSpace(_departamento);
+        }
+
+        private async void CancelarAsync()
+        {
+            await Shell.Current.GoToAsync("..");
+        }
+
+        private async void SalvarAsync()
+        {
+            await Shell.Current.GoToAsync("..");
         }
     }
 }
