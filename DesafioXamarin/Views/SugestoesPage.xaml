@@ -2,14 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DesafioXamarin.Views.SugestoesPage"
-             Title="{Binding Title}"
+             Title="Sugestões"
              xmlns:local="clr-namespace:DesafioXamarin.ViewModels"  
-             xmlns:model="clr-namespace:DesafioXamarin.Models"  
-             x:Name="BrowseItemsPage">
+             xmlns:model="clr-namespace:DesafioXamarin.Models">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem
-            Text="Add"
+            Text="Adicionar"
             Command="{Binding AddItemCommand}" />
     </ContentPage.ToolbarItems>
 
