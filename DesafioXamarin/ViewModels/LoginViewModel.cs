@@ -6,11 +6,11 @@ using Xamarin.Forms;
 
 namespace DesafioXamarin.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    public class AddDepartamentoViewModel : BaseViewModel
     {
         public Command LoginCommand { get; }
 
-        public LoginViewModel()
+        public AddDepartamentoViewModel()
         {
             LoginCommand = new Command(OnLoginClicked);
         }

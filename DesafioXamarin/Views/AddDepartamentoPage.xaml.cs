@@ -10,12 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace DesafioXamarin.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class AddDepartamentoPage : ContentPage
     {
-        public LoginPage()
+        public AddDepartamentoPage()
         {
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
+            this.BindingContext = new AddDepartamentoViewModel();
         }
     }
 }
