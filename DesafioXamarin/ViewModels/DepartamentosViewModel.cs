@@ -1,57 +1,42 @@
 ﻿using DesafioXamarin.Models;
+using DesafioXamarin.Views;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace DesafioXamarin.ViewModels
 {
-    [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public class DepartamentosViewModel : BaseViewModel
     {
-        private string itemId;
-        private string text;
-        private string description;
-        public string Id { get; set; }
+        public Command AddDepartamentoCommand { get; }
 
-        public string Text
+        List<string> _departamentos;
+
+        public List<string> Departamentos
         {
-            get => text;
-            set => SetProperty(ref text, value);
+            get => _departamentos;
+            set => SetProperty(ref _departamentos, value);
         }
 
-        public string Description
+        public DepartamentosViewModel()
         {
-            get => description;
-            set => SetProperty(ref description, value);
+            _departamentos = new List<string>
+            {
+                "Administrativo",
+                "Financeiro",
+                "RH",
+                "TI",
+                "Produção"
+            };
+
+            AddDepartamentoCommand = new Command(AddDepartamentoAsync);
         }
 
-        public string ItemId
+        private async void AddDepartamentoAsync()
         {
-            get
-            {
-                return itemId;
-            }
-            set
-            {
-                itemId = value;
-                LoadItemId(value);
-            }
-        }
-
-        public async void LoadItemId(string itemId)
-        {
-            try
-            {
-                var item = await DataStore.GetItemAsync(itemId);
-                Id = item.Id;
-                Text = item.Text;
-                Description = item.Description;
-            }
-            catch (Exception)
-            {
-                Debug.WriteLine("Failed to Load Item");
-            }
+            await Shell.Current.GoToAsync(nameof(AddDepartamentoPage));
         }
     }
 }
