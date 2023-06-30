@@ -7,12 +7,12 @@ using Xamarin.Forms;
 
 namespace DesafioXamarin.ViewModels
 {
-    public class NewItemViewModel : BaseViewModel
+    public class AddSugestaoViewModel : BaseViewModel
     {
         private string text;
         private string description;
 
-        public NewItemViewModel()
+        public AddSugestaoViewModel()
         {
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);

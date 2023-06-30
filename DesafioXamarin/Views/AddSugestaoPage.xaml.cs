@@ -8,14 +8,14 @@ using Xamarin.Forms.Xaml;
 
 namespace DesafioXamarin.Views
 {
-    public partial class NewItemPage : ContentPage
+    public partial class AddSugestaoPage : ContentPage
     {
         public Item Item { get; set; }
 
-        public NewItemPage()
+        public AddSugestaoPage()
         {
             InitializeComponent();
-            BindingContext = new NewItemViewModel();
+            BindingContext = new AddSugestaoViewModel();
         }
     }
 }
