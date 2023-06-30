@@ -4,12 +4,12 @@ using Xamarin.Forms;
 
 namespace DesafioXamarin.Views
 {
-    public partial class ItemDetailPage : ContentPage
+    public partial class DepartamentosPage : ContentPage
     {
-        public ItemDetailPage()
+        public DepartamentosPage()
         {
             InitializeComponent();
-            BindingContext = new ItemDetailViewModel();
+            BindingContext = new DepartamentosViewModel();
         }
     }
 }

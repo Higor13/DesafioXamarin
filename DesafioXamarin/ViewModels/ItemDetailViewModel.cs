@@ -7,7 +7,7 @@ using Xamarin.Forms;
 namespace DesafioXamarin.ViewModels
 {
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
-    public class ItemDetailViewModel : BaseViewModel
+    public class DepartamentosViewModel : BaseViewModel
     {
         private string itemId;
         private string text;
