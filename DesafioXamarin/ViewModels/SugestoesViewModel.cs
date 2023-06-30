@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace DesafioXamarin.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class SugestoesViewModel : BaseViewModel
     {
         private Item _selectedItem;
 
@@ -17,7 +17,7 @@ namespace DesafioXamarin.ViewModels
         public Command AddItemCommand { get; }
         public Command<Item> ItemTapped { get; }
 
-        public ItemsViewModel()
+        public SugestoesViewModel()
         {
             Title = "Browse";
             Items = new ObservableCollection<Item>();

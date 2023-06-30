@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:DesafioXamarin.Views"
@@ -36,20 +36,20 @@
             Route="HomePage"
             ContentTemplate="{DataTemplate local:HomePage}" />
         <ShellContent 
-            Title="Browse" 
+            Title="Sugestões" 
             Icon="icon_feed.png" 
-            ContentTemplate="{DataTemplate local:ItemsPage}" />
+            ContentTemplate="{DataTemplate local:SugestoesPage}" />
     </TabBar>
 
     <!--
         If you would like to navigate to this content you can do so by calling
         await Shell.Current.GoToAsync("//LoginPage");
     -->
-    <TabBar>
+    <!--<TabBar>
         <ShellContent 
             Route="LoginPage"
             ContentTemplate="{DataTemplate local:LoginPage}" />
-    </TabBar>
+    </TabBar>-->
 
 
 </Shell>

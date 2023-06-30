@@ -12,15 +12,15 @@ using Xamarin.Forms.Xaml;
 
 namespace DesafioXamarin.Views
 {
-    public partial class ItemsPage : ContentPage
+    public partial class SugestoesPage : ContentPage
     {
-        ItemsViewModel _viewModel;
+        SugestoesViewModel _viewModel;
 
-        public ItemsPage()
+        public SugestoesPage()
         {
             InitializeComponent();
 
-            BindingContext = _viewModel = new ItemsViewModel();
+            BindingContext = _viewModel = new SugestoesViewModel();
         }
 
         protected override void OnAppearing()
