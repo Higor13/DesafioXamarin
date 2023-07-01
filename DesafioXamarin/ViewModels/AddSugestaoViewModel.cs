@@ -76,7 +76,7 @@ namespace DesafioXamarin.ViewModels
                 Justificativa = string.Empty
             };
 
-            await DataStore.AddItemAsync(newItem);
+            await DataStore.AddSugestaoAsync(newItem);
 
             await Shell.Current.GoToAsync("..");
         }

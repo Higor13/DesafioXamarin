@@ -34,7 +34,7 @@ namespace DesafioXamarin.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
+                var items = await DataStore.GetSugestoesAsync(true);
                 foreach (var item in items)
                 {
                     Items.Add(item);

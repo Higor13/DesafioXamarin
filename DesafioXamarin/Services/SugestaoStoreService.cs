@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DesafioXamarin.Services
 {
-    public class MockDataStore : IDataStore<Sugestao>
+    public class MockDataStore : ISugestaoStore<Sugestao>
     {
         readonly List<Sugestao> items;
 
@@ -25,14 +25,14 @@ namespace DesafioXamarin.Services
             };
         }
 
-        public async Task<bool> AddItemAsync(Sugestao item)
+        public async Task<bool> AddSugestaoAsync(Sugestao item)
         {
             items.Add(item);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> UpdateItemAsync(Sugestao item)
+        public async Task<bool> UpdateSugestaoAsync(Sugestao item)
         {
             var oldItem = items.Where((Sugestao arg) => arg.Id == item.Id).FirstOrDefault();
             items.Remove(oldItem);
@@ -41,7 +41,7 @@ namespace DesafioXamarin.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteSugestaoAsync(string id)
         {
             var oldItem = items.Where((Sugestao arg) => arg.Id == id).FirstOrDefault();
             items.Remove(oldItem);
@@ -49,12 +49,12 @@ namespace DesafioXamarin.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<Sugestao> GetItemAsync(string id)
+        public async Task<Sugestao> GetSugestaoAsync(string id)
         {
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
         }
 
-        public async Task<IEnumerable<Sugestao>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Sugestao>> GetSugestoesAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(items);
         }
