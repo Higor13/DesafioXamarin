@@ -41,16 +41,13 @@
                             <Frame
                                 Padding="0"
                                 HeightRequest="60"
-                                BorderColor="Gray">
-                                <Grid
-                                    ColumnDefinitions="2*,*,3*"
-                                    Padding="10"
-                                    x:DataType="model:Departamento">
-                                    <Label
-                                        VerticalTextAlignment="Center"
-                                        Text="{Binding NomeDepartamento}"
-                                        FontSize="16" />
-                                </Grid>
+                                BorderColor="Gray"
+                                x:DataType="model:Departamento">
+                                <Label
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
+                                    Text="{Binding NomeDepartamento}"
+                                    FontSize="16" />
                             </Frame>
                         </SwipeView>
                     </StackLayout>
