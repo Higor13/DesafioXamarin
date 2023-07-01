@@ -16,12 +16,12 @@ namespace DesafioXamarin.Services
         {
             sugestoesList = new List<Sugestao>()
             {
-                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 1", Nome = "João", Departamento = DepartamentosEnum.TI, Descricao ="This is an item description.", Justificativa = "Justificativa 1" },
-                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 2", Nome = "João", Departamento = DepartamentosEnum.TI, Descricao ="This is an item description.", Justificativa = "Justificativa 2" },
-                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 3", Nome = "João", Departamento = DepartamentosEnum.TI, Descricao ="This is an item description.", Justificativa = "Justificativa 3" },
-                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 4", Nome = "João", Departamento = DepartamentosEnum.TI, Descricao ="This is an item description.", Justificativa = "Justificativa 4" },
-                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 5", Nome = "João", Departamento = DepartamentosEnum.TI, Descricao ="This is an item description.", Justificativa = "Justificativa 5" },
-                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 6", Nome = "João", Departamento = DepartamentosEnum.TI, Descricao ="This is an item description.", Justificativa = "Justificativa 6" }
+                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 1", Nome = "João", Departamento = new Departamento { NomeDepartamento = "TI"}, Descricao ="Descrição da sugestão 1", Justificativa = "Justificativa 1" },
+                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 2", Nome = "João", Departamento = new Departamento { NomeDepartamento = "TI"}, Descricao ="Descrição da sugestão 2", Justificativa = "Justificativa 2" },
+                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 3", Nome = "João", Departamento = new Departamento { NomeDepartamento = "TI"}, Descricao ="Descrição da sugestão 3", Justificativa = "Justificativa 3" },
+                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 4", Nome = "João", Departamento = new Departamento { NomeDepartamento = "TI"}, Descricao ="Descrição da sugestão 4", Justificativa = "Justificativa 4" },
+                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 5", Nome = "João", Departamento = new Departamento { NomeDepartamento = "TI"}, Descricao ="Descrição da sugestão 5", Justificativa = "Justificativa 5" },
+                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 6", Nome = "João", Departamento = new Departamento { NomeDepartamento = "TI"}, Descricao ="Descrição da sugestão 6", Justificativa = "Justificativa 6" }
             };
         }
 

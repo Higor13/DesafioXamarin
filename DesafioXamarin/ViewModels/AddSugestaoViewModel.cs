@@ -77,7 +77,12 @@ namespace DesafioXamarin.ViewModels
                 Id = Guid.NewGuid().ToString(),
                 Titulo = Titulo,
                 Nome = Nome,
-                Departamento = DepartamentosEnum.Administrativo,
+                Departamento = new Departamento
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    NomeDepartamento = Departamento,
+                    DataInclusao = DateTime.Now
+                },
                 Descricao = Sugestao,
                 Justificativa = Justificativa
             };

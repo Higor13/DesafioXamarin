@@ -47,7 +47,7 @@
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="16" />
                             <Label
-                                Text="{Binding Departamento}" 
+                                Text="{Binding Departamento.NomeDepartamento}" 
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="16" />

@@ -32,7 +32,8 @@
                 Text="Departamento"
                 FontSize="Medium" />
             <Picker
-                Title="Selecione">
+                Title="Selecione"
+                SelectedItem="{Binding Departamento}">
                 <Picker.ItemsSource>
                     <x:Array
                         Type="{x:Type x:String}">
