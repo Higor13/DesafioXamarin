@@ -20,9 +20,6 @@ namespace DesafioXamarin.ViewModels
         public Command EditarDepartamentoCommand { get; }
         public Command ExcluirDepartamentoCommand { get; }
 
-        //public ICommand EditarDepartamentoCommand { get; private set; }
-        //public ICommand ExcluirDepartamentoCommand { get; private set; }
-
         public DepartamentosViewModel()
         {
             Task.Run(async () => await ExecuteLoadItemsCommand());
@@ -44,8 +41,13 @@ namespace DesafioXamarin.ViewModels
 
         async Task ExcluirDepartamentoAsync(Departamento departamento)
         {
-            // Add Display alert
-            await Shell.Current.GoToAsync(nameof(AddDepartamentoPage));
+            var resposta = await Shell.Current.DisplayAlert("Atenção!", $"Deseja excluir o departamento {departamento.NomeDepartamento}?","Sim", "Não");
+
+            if (resposta)
+            {
+                await DepartamentoDataStore.DeleteDepartamentoAsync(departamento.Id);
+                IsBusy = true;
+            }
         }
 
         public void OnAppearing()
