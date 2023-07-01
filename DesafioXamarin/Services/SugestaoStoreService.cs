@@ -10,11 +10,11 @@ namespace DesafioXamarin.Services
 {
     public class SugestaoStoreService : ISugestaoStore<Sugestao>
     {
-        readonly List<Sugestao> items;
+        readonly List<Sugestao> sugestoesList;
 
         public SugestaoStoreService()
         {
-            items = new List<Sugestao>()
+            sugestoesList = new List<Sugestao>()
             {
                 new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 1", Nome = "João", Departamento = DepartamentosEnum.TI, Descricao ="This is an item description.", Justificativa = "Justificativa 1" },
                 new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 2", Nome = "João", Departamento = DepartamentosEnum.TI, Descricao ="This is an item description.", Justificativa = "Justificativa 2" },
@@ -27,36 +27,36 @@ namespace DesafioXamarin.Services
 
         public async Task<bool> AddSugestaoAsync(Sugestao item)
         {
-            items.Add(item);
+            sugestoesList.Add(item);
 
             return await Task.FromResult(true);
         }
 
         public async Task<bool> UpdateSugestaoAsync(Sugestao item)
         {
-            var oldItem = items.Where((Sugestao arg) => arg.Id == item.Id).FirstOrDefault();
-            items.Remove(oldItem);
-            items.Add(item);
+            var oldItem = sugestoesList.Where((Sugestao arg) => arg.Id == item.Id).FirstOrDefault();
+            sugestoesList.Remove(oldItem);
+            sugestoesList.Add(item);
 
             return await Task.FromResult(true);
         }
 
         public async Task<bool> DeleteSugestaoAsync(string id)
         {
-            var oldItem = items.Where((Sugestao arg) => arg.Id == id).FirstOrDefault();
-            items.Remove(oldItem);
+            var oldItem = sugestoesList.Where((Sugestao arg) => arg.Id == id).FirstOrDefault();
+            sugestoesList.Remove(oldItem);
 
             return await Task.FromResult(true);
         }
 
         public async Task<Sugestao> GetSugestaoAsync(string id)
         {
-            return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
+            return await Task.FromResult(sugestoesList.FirstOrDefault(s => s.Id == id));
         }
 
         public async Task<IEnumerable<Sugestao>> GetSugestoesAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(items);
+            return await Task.FromResult(sugestoesList);
         }
     }
 }

@@ -82,7 +82,7 @@ namespace DesafioXamarin.ViewModels
                 Justificativa = Justificativa
             };
 
-            await DataStore.AddSugestaoAsync(newItem);
+            await SugestoesDataStore.AddSugestaoAsync(newItem);
 
             await Shell.Current.GoToAsync("..");
         }
