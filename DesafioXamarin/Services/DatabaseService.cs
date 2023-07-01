@@ -82,5 +82,10 @@ namespace DesafioXamarin.Services
 
             return await Task.FromResult(true);
         }
+
+        public List<Sugestao> GetSugestoesPorDepartamento(string departamento)
+        {
+            return _connection.Query<Sugestao>($"SELECT * FROM Sugestao WHERE Departamento == {departamento}").ToList();
+        }
     }
 }

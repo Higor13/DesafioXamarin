@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DesafioXamarin.Views.SugestoesPage"
              Title="Sugestões"
-             xmlns:local="clr-namespace:DesafioXamarin.ViewModels"  
+             xmlns:local="clr-namespace:DesafioXamarin.ViewModels"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:model="clr-namespace:DesafioXamarin.Models">
 
     <ContentPage.ToolbarItems>
@@ -19,7 +20,14 @@
         <StackLayout>
             <Picker
                 Title="Filtar por departamento"
+                SelectedItem="{Binding Departamento, Mode=TwoWay}"
                 ItemsSource="{Binding Departamentos}">
+                <Picker.Behaviors>
+                    <xct:EventToCommandBehavior
+                        EventName="SelectedIndexChanged"
+                        Command="{Binding FiltrarCommand}"
+                        CommandParameter="{Binding .}"/>
+                </Picker.Behaviors>
             </Picker>
 
             <CollectionView
