@@ -1,6 +1,7 @@
 ﻿using DesafioXamarin.Enums;
 using DesafioXamarin.Interfaces;
 using DesafioXamarin.Models;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,11 @@ namespace DesafioXamarin.Services
     {
         readonly List<Sugestao> sugestoesList;
         readonly List<Departamento> departamentosList;
+        SQLiteConnection _connection;
 
         public DatabaseService()
         {
-            var connection = App.Database.GetConnection();
+            _connection = App.Database.GetConnection();
 
             //sugestoesList = new List<Sugestao>()
             //{
@@ -40,7 +42,9 @@ namespace DesafioXamarin.Services
 
         public async Task<bool> AddSugestaoAsync(Sugestao item)
         {
-            sugestoesList.Add(item);
+            //sugestoesList.Add(item);
+
+            _connection.Insert(item);
 
             return await Task.FromResult(true);
         }
@@ -69,7 +73,8 @@ namespace DesafioXamarin.Services
 
         public async Task<IEnumerable<Sugestao>> GetSugestoesAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(sugestoesList);
+            //return await Task.FromResult(sugestoesList);
+            return _connection.Table<Sugestao>().ToList();
         }
 
         public async Task<bool> AddDepartamentoAsync(Departamento item)
