@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace DesafioXamarin.Services
 {
-    public class SugestaoStoreService : IDatabase
+    public class DatabaseService : IDatabase
     {
         readonly List<Sugestao> sugestoesList;
         readonly List<Departamento> departamentosList;
 
-        public SugestaoStoreService()
+        public DatabaseService()
         {
             sugestoesList = new List<Sugestao>()
             {
