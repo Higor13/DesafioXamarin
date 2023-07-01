@@ -21,10 +21,28 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout
-                        Padding="10">
-                        <Label
-                            Text="{Binding}"
-                            FontSize="16" />
+                        Padding="5">
+                        <Frame
+                            Padding="0"
+                            HeightRequest="60"
+                            BorderColor="Gray">
+                            <Grid
+                                ColumnDefinitions="2*,*,3*"
+                                Padding="10">
+                                <Label
+                                    VerticalTextAlignment="Center"
+                                    Text="{Binding}"
+                                    FontSize="16" />
+                                <StackLayout
+                                    Orientation="Horizontal"
+                                    Grid.Column="2">
+                                    <Button
+                                        Text="Editar"/>
+                                    <Button
+                                        Text="Excluir"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
