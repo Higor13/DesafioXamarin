@@ -35,6 +35,13 @@ namespace DesafioXamarin.ViewModels
             ItemTapped = new Command<Sugestao>(OnItemSelected);
 
             AddItemCommand = new Command(OnAddItem);
+
+            Task.Run(async () => await Database.AddSugestaoAsync(new Sugestao { Titulo = "Titulo 1", Nome = "Higor", Departamento = "TI", Descricao = "Descrição da sugestão 1", Justificativa = "Justificativa 1" }));
+            Task.Run(async () => await Database.AddSugestaoAsync(new Sugestao { Titulo = "Titulo 2", Nome = "João", Departamento = "TI", Descricao = "Descrição da sugestão 2", Justificativa = "Justificativa 2" }));
+            Task.Run(async () => await Database.AddSugestaoAsync(new Sugestao { Titulo = "Titulo 3", Nome = "José", Departamento = "TI", Descricao = "Descrição da sugestão 3", Justificativa = "Justificativa 3" }));
+            Task.Run(async () => await Database.AddSugestaoAsync(new Sugestao { Titulo = "Titulo 4", Nome = "Maria", Departamento = "TI", Descricao = "Descrição da sugestão 4", Justificativa = "Justificativa 4" }));
+            Task.Run(async () => await Database.AddSugestaoAsync(new Sugestao { Titulo = "Titulo 5", Nome = "Tiago", Departamento = "TI", Descricao = "Descrição da sugestão 5", Justificativa = "Justificativa 5" }));
+            Task.Run(async () => await Database.AddSugestaoAsync(new Sugestao { Titulo = "Titulo 6", Nome = "Pedro", Departamento = "TI", Descricao = "Descrição da sugestão 6", Justificativa = "Justificativa 6" }));
         }
 
         void ExecuteLoadItemsCommand()
