@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace DesafioXamarin.ViewModels
@@ -15,6 +16,11 @@ namespace DesafioXamarin.ViewModels
 
         public Command LoadItemsCommand { get; }
         public Command AddDepartamentoCommand { get; }
+        public Command EditarDepartamentoCommand { get; }
+        public Command ExcluirDepartamentoCommand { get; }
+
+        //public ICommand EditarDepartamentoCommand { get; private set; }
+        //public ICommand ExcluirDepartamentoCommand { get; private set; }
 
         public DepartamentosViewModel()
         {
@@ -25,6 +31,19 @@ namespace DesafioXamarin.ViewModels
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             AddDepartamentoCommand = new Command(AddDepartamentoAsync);
+            EditarDepartamentoCommand = new Command<Departamento>(async (departamento) => await EditarDepartamentoAsync(departamento));
+            ExcluirDepartamentoCommand = new Command<Departamento>(async (departamento) => await ExcluirDepartamentoAsync(departamento));
+        }
+
+        async Task EditarDepartamentoAsync(Departamento departamento)
+        {
+            await Shell.Current.GoToAsync(nameof(EditarDepartamentoPage));
+        }
+
+        async Task ExcluirDepartamentoAsync(Departamento departamento)
+        {
+            // Add Display alert
+            await Shell.Current.GoToAsync(nameof(AddDepartamentoPage));
         }
 
         public void OnAppearing()

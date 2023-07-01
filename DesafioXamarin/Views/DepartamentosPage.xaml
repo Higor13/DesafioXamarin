@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DesafioXamarin.Views.DepartamentosPage"
              xmlns:local="clr-namespace:DesafioXamarin.ViewModels"  
-             xmlns:model="clr-namespace:DesafioXamarin.Models" 
+             xmlns:model="clr-namespace:DesafioXamarin.Models"
              Title="Departamentos">
 
     <ContentPage.ToolbarItems>
@@ -13,38 +13,46 @@
     </ContentPage.ToolbarItems>
 
     <RefreshView
-        x:DataType="local:DepartamentosViewModel"
         Command="{Binding LoadItemsCommand}"
         IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <CollectionView
+            x:Name="collectionView"
             ItemsSource="{Binding Departamentos}"
             SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout
-                        Padding="5"
-                        x:DataType="model:Departamento">
-                        <Frame
-                            Padding="0"
-                            HeightRequest="60"
-                            BorderColor="Gray">
-                            <Grid
-                                ColumnDefinitions="2*,*,3*"
-                                Padding="10">
-                                <Label
-                                    VerticalTextAlignment="Center"
-                                    Text="{Binding NomeDepartamento}"
-                                    FontSize="16" />
-                                <StackLayout
-                                    Orientation="Horizontal"
-                                    Grid.Column="2">
-                                    <Button
-                                        Text="Editar"/>
-                                    <Button
-                                        Text="Excluir"/>
-                                </StackLayout>
-                            </Grid>
-                        </Frame>
+                        Padding="5">
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                        Text="Editar"
+                                        BackgroundColor="Green"
+                                        Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.EditarDepartamentoCommand}"
+                                        CommandParameter="{Binding .}" />
+                                    <SwipeItem
+                                        Text="Excluir"
+                                        BackgroundColor="Red"
+                                        Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.ExcluirDepartamentoCommand}"
+                                        CommandParameter="{Binding .}" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Frame
+                                Padding="0"
+                                HeightRequest="60"
+                                BorderColor="Gray">
+                                <Grid
+                                    ColumnDefinitions="2*,*,3*"
+                                    Padding="10"
+                                    x:DataType="model:Departamento">
+                                    <Label
+                                        VerticalTextAlignment="Center"
+                                        Text="{Binding NomeDepartamento}"
+                                        FontSize="16" />
+                                </Grid>
+                            </Frame>
+                        </SwipeView>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
