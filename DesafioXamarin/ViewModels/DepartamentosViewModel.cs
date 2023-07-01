@@ -1,5 +1,6 @@
 ﻿using DesafioXamarin.Models;
 using DesafioXamarin.Views;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -37,7 +38,8 @@ namespace DesafioXamarin.ViewModels
 
         async Task EditarDepartamentoAsync(Departamento departamento)
         {
-            await Shell.Current.GoToAsync(nameof(EditarDepartamentoPage));
+            string departamentoAsString = JsonConvert.SerializeObject(departamento);
+            await Shell.Current.GoToAsync($"{nameof(EditarDepartamentoPage)}?{nameof(EditarDepartamentoViewModel.Departamento)}={departamentoAsString}");
         }
 
         async Task ExcluirDepartamentoAsync(Departamento departamento)

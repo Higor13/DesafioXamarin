@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="DesafioXamarin.Views.EditarDepartamentoPage">
+
+    <ContentPage.Content>
+        <StackLayout
+            Spacing="3"
+            Padding="15">
+
+            <Label
+                Text="Departamento"
+                FontSize="Medium" />
+            <Entry
+                Text="{Binding Departamento, Mode=TwoWay}"
+                FontSize="Medium" />
+
+            <StackLayout
+                Orientation="Horizontal">
+                <Button
+                    Text="Cancelar"
+                    Command="{Binding CancelarCommand}"
+                    HorizontalOptions="FillAndExpand"/>
+                <Button
+                    Text="Salvar"
+                    Command="{Binding SalvarCommand}"
+                    HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
