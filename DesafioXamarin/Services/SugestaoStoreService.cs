@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DesafioXamarin.Services
 {
-    public class MockDataStore : ISugestaoStore<Sugestao>
+    public class SugestaoStoreService : ISugestaoStore<Sugestao>
     {
         readonly List<Sugestao> items;
 
-        public MockDataStore()
+        public SugestaoStoreService()
         {
             items = new List<Sugestao>()
             {
