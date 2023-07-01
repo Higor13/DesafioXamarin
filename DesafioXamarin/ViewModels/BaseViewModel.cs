@@ -12,6 +12,7 @@ namespace DesafioXamarin.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public ISugestaoStore<Sugestao> SugestoesDataStore => DependencyService.Get<ISugestaoStore<Sugestao>>();
+        public IDepartamentoStore<Departamento> DepartamentoDataStore => DependencyService.Get<IDepartamentoStore<Departamento>>();
 
         bool isBusy = false;
         public bool IsBusy

@@ -14,6 +14,8 @@ namespace DesafioXamarin
             InitializeComponent();
 
             DependencyService.Register<SugestaoStoreService>();
+            DependencyService.Register<DepartamentoStoreService>();
+
             MainPage = new AppShell();
         }
 
