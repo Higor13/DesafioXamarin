@@ -12,6 +12,16 @@ namespace DesafioXamarin.ViewModels
     {
         private Sugestao _selectedItem;
 
+        public Sugestao SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                SetProperty(ref _selectedItem, value);
+                OnItemSelected(value);
+            }
+        }
+
         public ObservableCollection<Sugestao> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
@@ -56,16 +66,6 @@ namespace DesafioXamarin.ViewModels
         {
             IsBusy = true;
             SelectedItem = null;
-        }
-
-        public Sugestao SelectedItem
-        {
-            get => _selectedItem;
-            set
-            {
-                SetProperty(ref _selectedItem, value);
-                OnItemSelected(value);
-            }
         }
 
         private async void OnAddItem(object obj)

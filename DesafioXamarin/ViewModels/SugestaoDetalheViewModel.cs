@@ -60,11 +60,12 @@ namespace DesafioXamarin.ViewModels
             }
         }
 
-        public async void LoadItemId(int itemId)
+        public void LoadItemId(int itemId)
         {
             try
             {
-                Sugestao item = await Database.GetSugestaoAsync(itemId);
+                Sugestao item = Database.GetSugestao(itemId);
+
                 Nome = item.Nome;
                 Titulo = item.Titulo;
                 Sugestao = item.Descricao;

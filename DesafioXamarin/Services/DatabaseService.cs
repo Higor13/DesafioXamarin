@@ -42,10 +42,7 @@ namespace DesafioXamarin.Services
 
         public async Task<bool> AddSugestaoAsync(Sugestao item)
         {
-            //sugestoesList.Add(item);
-
             _connection.Insert(item);
-
             return await Task.FromResult(true);
         }
 
@@ -66,9 +63,9 @@ namespace DesafioXamarin.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<Sugestao> GetSugestaoAsync(int id)
+        public Sugestao GetSugestao(int id)
         {
-            return await Task.FromResult(sugestoesList.FirstOrDefault(s => s.Id == id));
+            return _connection.Get<Sugestao>(id);
         }
 
         public async Task<IEnumerable<Sugestao>> GetSugestoesAsync(bool forceRefresh = false)
