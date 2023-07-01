@@ -11,8 +11,6 @@ namespace DesafioXamarin.ViewModels
 {
     public class SugestoesViewModel : BaseViewModel
     {
-        //public ObservableCollection<string> DepartamentosFilter { get; set; }
-
         private ObservableCollection<string> _departamentos;
 
         public ObservableCollection<string> Departamentos

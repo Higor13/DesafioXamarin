@@ -33,17 +33,8 @@
                 FontSize="Medium" />
             <Picker
                 Title="Selecione"
-                SelectedItem="{Binding Departamento}">
-                <Picker.ItemsSource>
-                    <x:Array
-                        Type="{x:Type x:String}">
-                        <x:String>Administrativo</x:String>
-                        <x:String>Financeiro</x:String>
-                        <x:String>RH</x:String>
-                        <x:String>Comercial</x:String>
-                        <x:String>Produção</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
+                SelectedItem="{Binding Departamento}"
+                ItemsSource="{Binding Departamentos}">
             </Picker>
 
             <Label
