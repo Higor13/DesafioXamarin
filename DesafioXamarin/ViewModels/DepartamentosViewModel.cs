@@ -2,6 +2,7 @@
 using DesafioXamarin.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -10,6 +11,8 @@ namespace DesafioXamarin.ViewModels
 {
     public class DepartamentosViewModel : BaseViewModel
     {
+        public ObservableCollection<Sugestao> Items { get; }
+
         public Command AddDepartamentoCommand { get; }
 
         List<string> _departamentos;
@@ -22,6 +25,8 @@ namespace DesafioXamarin.ViewModels
 
         public DepartamentosViewModel()
         {
+            Items = new ObservableCollection<Sugestao>();
+
             _departamentos = new List<string>
             {
                 "Administrativo",
@@ -32,6 +37,29 @@ namespace DesafioXamarin.ViewModels
             };
 
             AddDepartamentoCommand = new Command(AddDepartamentoAsync);
+        }
+
+        async Task ExecuteLoadItemsCommand()
+        {
+            IsBusy = true;
+
+            try
+            {
+                Items.Clear();
+                var items = await SugestoesDataStore.GetSugestoesAsync(true);
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         private async void AddDepartamentoAsync()
