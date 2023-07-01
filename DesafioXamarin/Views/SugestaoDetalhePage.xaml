@@ -3,9 +3,43 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="DesafioXamarin.Views.SugestaoDetalhePage"
+    xmlns:viewModel="clr-namespace:DesafioXamarin.ViewModels"
+    x:DataType="viewModel:SugestaoDetalheViewModel"
     Title="Detalhes">
+
     <ContentPage.Content>
-        
+        <StackLayout>
+            <StackLayout>
+                <Label
+                    Text="Titulo" />
+                <Label
+                    Text="{Binding Titulo}" />
+            </StackLayout>
+            <StackLayout>
+                <Label
+                    Text="Colaborador" />
+                <Label
+                    Text="{Binding Nome}" />
+            </StackLayout>
+            <StackLayout>
+                <Label
+                    Text="Departamento" />
+                <Label
+                    Text="{Binding Departamento}" />
+            </StackLayout>
+            <StackLayout>
+                <Label
+                    Text="Descricao" />
+                <Label
+                    Text="{Binding Sugestao}" />
+            </StackLayout>
+            <StackLayout>
+                <Label
+                    Text="Justificativa" />
+                <Label
+                    Text="{Binding Justificativa}" />
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
 

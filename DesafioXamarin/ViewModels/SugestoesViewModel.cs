@@ -76,8 +76,8 @@ namespace DesafioXamarin.ViewModels
             if (item == null)
                 return;
 
-            //await Shell.Current.GoToAsync($"{nameof(SugestaoDetalhePage)}?{nameof(DepartamentosViewModel.ItemId)}={item.Id}");
-            await Shell.Current.GoToAsync(nameof(SugestaoDetalhePage));
+            await Shell.Current.GoToAsync($"{nameof(SugestaoDetalhePage)}?{nameof(SugestaoDetalheViewModel.ItemId)}={item.Id}");
+            //await Shell.Current.GoToAsync(nameof(SugestaoDetalhePage));
         }
     }
 }
