@@ -18,18 +18,8 @@
         IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <StackLayout>
             <Picker
-                Title="Filtar por departamento">
-                <Picker.ItemsSource>
-                    <x:Array
-                        Type="{x:Type x:String}">
-                        <x:String>Administrativo</x:String>
-                        <x:String>Financeiro</x:String>
-                        <x:String>RH</x:String>
-                        <x:String>Comercial</x:String>
-                        <x:String>Produção</x:String>
-                        <x:String>Todos</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
+                Title="Filtar por departamento"
+                ItemsSource="{Binding Departamentos}">
             </Picker>
 
             <CollectionView

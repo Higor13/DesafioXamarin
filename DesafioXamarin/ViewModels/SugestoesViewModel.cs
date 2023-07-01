@@ -1,6 +1,7 @@
 ﻿using DesafioXamarin.Models;
 using DesafioXamarin.Views;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -10,6 +11,16 @@ namespace DesafioXamarin.ViewModels
 {
     public class SugestoesViewModel : BaseViewModel
     {
+        //public ObservableCollection<string> DepartamentosFilter { get; set; }
+
+        private ObservableCollection<string> _departamentos;
+
+        public ObservableCollection<string> Departamentos
+        {
+            get => _departamentos;
+            set => SetProperty(ref _departamentos, value);
+        }
+
         private Sugestao _selectedItem;
 
         public Sugestao SelectedItem
@@ -29,6 +40,7 @@ namespace DesafioXamarin.ViewModels
 
         public SugestoesViewModel()
         {
+            Departamentos = new ObservableCollection<string>();
             Items = new ObservableCollection<Sugestao>();
             LoadItemsCommand = new Command(ExecuteLoadItemsCommand);
 
@@ -42,6 +54,28 @@ namespace DesafioXamarin.ViewModels
             Task.Run(async () => await Database.AddSugestaoAsync(new Sugestao { Titulo = "Titulo 4", Nome = "Maria", Departamento = "TI", Descricao = "Descrição da sugestão 4", Justificativa = "Justificativa 4" }));
             Task.Run(async () => await Database.AddSugestaoAsync(new Sugestao { Titulo = "Titulo 5", Nome = "Tiago", Departamento = "TI", Descricao = "Descrição da sugestão 5", Justificativa = "Justificativa 5" }));
             Task.Run(async () => await Database.AddSugestaoAsync(new Sugestao { Titulo = "Titulo 6", Nome = "Pedro", Departamento = "TI", Descricao = "Descrição da sugestão 6", Justificativa = "Justificativa 6" }));
+        }
+
+        void CarregarDepartamentos()
+        {
+            try
+            {
+                Departamentos.Clear();
+
+                List<Departamento> result = Database.GetDepartamentos(true);
+                List<string> parcialList = new List<string>();
+
+                foreach (Departamento departamento in result)
+                {
+                    parcialList.Add(departamento.NomeDepartamento);
+                }
+                parcialList.Add("Todos");
+                Departamentos = new ObservableCollection<string>(parcialList);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         void ExecuteLoadItemsCommand()
@@ -73,6 +107,8 @@ namespace DesafioXamarin.ViewModels
         {
             IsBusy = true;
             SelectedItem = null;
+
+            CarregarDepartamentos();
         }
 
         private async void OnAddItem(object obj)
@@ -86,7 +122,6 @@ namespace DesafioXamarin.ViewModels
                 return;
 
             await Shell.Current.GoToAsync($"{nameof(SugestaoDetalhePage)}?{nameof(SugestaoDetalheViewModel.ItemId)}={item.Id}");
-            //await Shell.Current.GoToAsync(nameof(SugestaoDetalhePage));
         }
     }
 }
