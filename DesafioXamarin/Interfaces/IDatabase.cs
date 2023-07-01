@@ -17,6 +17,6 @@ namespace DesafioXamarin.Interfaces
         Task<bool> UpdateDepartamentoAsync(Departamento item);
         Task<bool> DeleteDepartamentoAsync(int id);
         Task<Departamento> GetDepartamentoAsync(int id);
-        Task<IEnumerable<Departamento>> GetDepartamentosAsync(bool forceRefresh = false);
+        List<Departamento> GetDepartamentos(bool forceRefresh = false);
     }
 }

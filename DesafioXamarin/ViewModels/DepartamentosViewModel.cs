@@ -22,11 +22,11 @@ namespace DesafioXamarin.ViewModels
 
         public DepartamentosViewModel()
         {
-            Task.Run(async () => await ExecuteLoadItemsCommand());
+            ExecuteLoadItemsCommand();
 
             Departamentos = new ObservableCollection<Departamento>();
 
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            LoadItemsCommand = new Command(ExecuteLoadItemsCommand);
 
             AddDepartamentoCommand = new Command(AddDepartamentoAsync);
             EditarDepartamentoCommand = new Command<Departamento>(async (departamento) => await EditarDepartamentoAsync(departamento));
@@ -55,14 +55,14 @@ namespace DesafioXamarin.ViewModels
             IsBusy = true;
         }
 
-        async Task ExecuteLoadItemsCommand()
+        void ExecuteLoadItemsCommand()
         {
             IsBusy = true;
 
             try
             {
                 Departamentos.Clear();
-                var items = await Database.GetDepartamentosAsync(true);
+                var items = Database.GetDepartamentos(true);
                 foreach (var item in items)
                 {
                     Departamentos.Add(item);

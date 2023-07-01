@@ -75,8 +75,7 @@ namespace DesafioXamarin.Services
 
         public async Task<bool> AddDepartamentoAsync(Departamento item)
         {
-            departamentosList.Add(item);
-
+            _connection.Insert(item);
             return await Task.FromResult(true);
         }
 
@@ -93,9 +92,9 @@ namespace DesafioXamarin.Services
             return await Task.FromResult(departamentosList.FirstOrDefault(s => s.Id == id));
         }
 
-        public async Task<IEnumerable<Departamento>> GetDepartamentosAsync(bool forceRefresh = false)
+        public List<Departamento> GetDepartamentos(bool forceRefresh = false)
         {
-            return await Task.FromResult(departamentosList);
+            return _connection.Table<Departamento>().ToList();
         }
 
         public async Task<bool> UpdateDepartamentoAsync(Departamento item)
