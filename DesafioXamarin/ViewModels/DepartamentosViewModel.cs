@@ -11,30 +11,16 @@ namespace DesafioXamarin.ViewModels
 {
     public class DepartamentosViewModel : BaseViewModel
     {
-        public ObservableCollection<Sugestao> Items { get; }
+        public ObservableCollection<Departamento> Departamentos { get; }
 
+        public Command LoadItemsCommand { get; }
         public Command AddDepartamentoCommand { get; }
-
-        List<string> _departamentos;
-
-        public List<string> Departamentos
-        {
-            get => _departamentos;
-            set => SetProperty(ref _departamentos, value);
-        }
 
         public DepartamentosViewModel()
         {
-            Items = new ObservableCollection<Sugestao>();
+            Departamentos = new ObservableCollection<Departamento>();
 
-            _departamentos = new List<string>
-            {
-                "Administrativo",
-                "Financeiro",
-                "RH",
-                "TI",
-                "Produção"
-            };
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             AddDepartamentoCommand = new Command(AddDepartamentoAsync);
         }
@@ -45,11 +31,11 @@ namespace DesafioXamarin.ViewModels
 
             try
             {
-                Items.Clear();
-                var items = await SugestoesDataStore.GetSugestoesAsync(true);
+                Departamentos.Clear();
+                var items = await DepartamentoDataStore.GetDepartamentosAsync(true);
                 foreach (var item in items)
                 {
-                    Items.Add(item);
+                    Departamentos.Add(item);
                 }
             }
             catch (Exception ex)

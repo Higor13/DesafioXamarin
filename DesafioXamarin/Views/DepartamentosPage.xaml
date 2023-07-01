@@ -13,6 +13,7 @@
     </ContentPage.ToolbarItems>
 
     <RefreshView
+        x:DataType="local:DepartamentosViewModel"
         Command="{Binding LoadItemsCommand}"
         IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <CollectionView
@@ -21,7 +22,8 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout
-                        Padding="5">
+                        Padding="5"
+                        x:DataType="model:Departamento">
                         <Frame
                             Padding="0"
                             HeightRequest="60"
@@ -31,7 +33,7 @@
                                 Padding="10">
                                 <Label
                                     VerticalTextAlignment="Center"
-                                    Text="{Binding}"
+                                    Text="{Binding NomeDepartamento}"
                                     FontSize="16" />
                                 <StackLayout
                                     Orientation="Horizontal"
