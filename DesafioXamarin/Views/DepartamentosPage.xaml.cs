@@ -6,10 +6,17 @@ namespace DesafioXamarin.Views
 {
     public partial class DepartamentosPage : ContentPage
     {
+        DepartamentosViewModel vm;
         public DepartamentosPage()
         {
             InitializeComponent();
-            BindingContext = new DepartamentosViewModel();
+            BindingContext = vm = new DepartamentosViewModel();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            vm.OnAppearing();
         }
     }
 }

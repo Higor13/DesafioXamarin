@@ -1,4 +1,5 @@
-﻿using DesafioXamarin.Models;
+﻿using DesafioXamarin.Enums;
+using DesafioXamarin.Models;
 using DesafioXamarin.Views;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,23 @@ namespace DesafioXamarin.ViewModels
 
         private async void SalvarAsync()
         {
-            await Shell.Current.GoToAsync("..");
+            try
+            {
+                Departamento newDepartamento = new Departamento()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    NomeDepartamento = Departamento,
+                    DataInclusao = DateTime.Now,
+                };
+
+                await DepartamentoDataStore.AddDepartamentoAsync(newDepartamento);
+
+                await Shell.Current.GoToAsync("..");
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

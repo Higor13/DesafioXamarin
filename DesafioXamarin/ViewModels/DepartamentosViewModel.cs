@@ -18,11 +18,18 @@ namespace DesafioXamarin.ViewModels
 
         public DepartamentosViewModel()
         {
+            Task.Run(async () => await ExecuteLoadItemsCommand());
+
             Departamentos = new ObservableCollection<Departamento>();
 
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             AddDepartamentoCommand = new Command(AddDepartamentoAsync);
+        }
+
+        public void OnAppearing()
+        {
+            IsBusy = true;
         }
 
         async Task ExecuteLoadItemsCommand()
