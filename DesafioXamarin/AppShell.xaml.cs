@@ -14,6 +14,7 @@ namespace DesafioXamarin
             Routing.RegisterRoute(nameof(DepartamentosPage), typeof(DepartamentosPage));
             Routing.RegisterRoute(nameof(AddDepartamentoPage), typeof(AddDepartamentoPage));
             Routing.RegisterRoute(nameof(AddSugestaoPage), typeof(AddSugestaoPage));
+            Routing.RegisterRoute(nameof(SugestaoDetalhePage), typeof(SugestaoDetalhePage));
         }
     }
 }

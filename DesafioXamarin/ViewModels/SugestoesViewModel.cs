@@ -76,8 +76,8 @@ namespace DesafioXamarin.ViewModels
             if (item == null)
                 return;
 
-            // This will push the ItemDetailPage onto the navigation stack
-            //await Shell.Current.GoToAsync($"{nameof(DepartamentosPage)}?{nameof(DepartamentosViewModel.ItemId)}={item.Id}");
+            //await Shell.Current.GoToAsync($"{nameof(SugestaoDetalhePage)}?{nameof(DepartamentosViewModel.ItemId)}={item.Id}");
+            await Shell.Current.GoToAsync(nameof(SugestaoDetalhePage));
         }
     }
 }
