@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DesafioXamarin.Services
+namespace DesafioXamarin.Interfaces
 {
     public interface IDataStore<T>
     {
