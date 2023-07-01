@@ -1,4 +1,5 @@
-﻿using DesafioXamarin.Models;
+﻿using DesafioXamarin.Enums;
+using DesafioXamarin.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -70,7 +71,7 @@ namespace DesafioXamarin.ViewModels
                 Id = Guid.NewGuid().ToString(),
                 Titulo = string.Empty,
                 Nome = Nome,
-                Departamento = string.Empty,
+                Departamento = DepartamentosEnum.Administrativo,
                 Descricao = Sugestao,
                 Justificativa = string.Empty
             };

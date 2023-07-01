@@ -1,4 +1,5 @@
 ﻿using System;
+using DesafioXamarin.Enums;
 
 namespace DesafioXamarin.Models
 {
@@ -7,7 +8,7 @@ namespace DesafioXamarin.Models
         public string Id { get; set; }
         public string Titulo { get; set; }
         public string Nome { get; set; }
-        public string Departamento { get; set; }
+        public DepartamentosEnum Departamento { get; set; }
         public string Descricao { get; set; }
         public string Justificativa { get; set; }
     }

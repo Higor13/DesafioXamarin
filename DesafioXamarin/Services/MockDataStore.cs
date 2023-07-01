@@ -1,4 +1,5 @@
-﻿using DesafioXamarin.Interfaces;
+﻿using DesafioXamarin.Enums;
+using DesafioXamarin.Interfaces;
 using DesafioXamarin.Models;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,12 @@ namespace DesafioXamarin.Services
         {
             items = new List<Sugestao>()
             {
-                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 1", Nome = "João", Departamento = "TI", Descricao ="This is an item description.", Justificativa = "Justificativa 1" },
-                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 2", Nome = "João", Departamento = "TI", Descricao ="This is an item description.", Justificativa = "Justificativa 2" },
-                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 3", Nome = "João", Departamento = "TI", Descricao ="This is an item description.", Justificativa = "Justificativa 3" },
-                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 4", Nome = "João", Departamento = "TI", Descricao ="This is an item description.", Justificativa = "Justificativa 4" },
-                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 5", Nome = "João", Departamento = "TI", Descricao ="This is an item description.", Justificativa = "Justificativa 5" },
-                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 6", Nome = "João", Departamento = "TI", Descricao ="This is an item description.", Justificativa = "Justificativa 6" }
+                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 1", Nome = "João", Departamento = DepartamentosEnum.TI, Descricao ="This is an item description.", Justificativa = "Justificativa 1" },
+                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 2", Nome = "João", Departamento = DepartamentosEnum.TI, Descricao ="This is an item description.", Justificativa = "Justificativa 2" },
+                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 3", Nome = "João", Departamento = DepartamentosEnum.TI, Descricao ="This is an item description.", Justificativa = "Justificativa 3" },
+                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 4", Nome = "João", Departamento = DepartamentosEnum.TI, Descricao ="This is an item description.", Justificativa = "Justificativa 4" },
+                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 5", Nome = "João", Departamento = DepartamentosEnum.TI, Descricao ="This is an item description.", Justificativa = "Justificativa 5" },
+                new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 6", Nome = "João", Departamento = DepartamentosEnum.TI, Descricao ="This is an item description.", Justificativa = "Justificativa 6" }
             };
         }
 
