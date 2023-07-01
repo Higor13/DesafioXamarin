@@ -7,7 +7,6 @@ namespace DesafioXamarin.Models
 	{
 		public string Id { get; set; }
 		public string NomeDepartamento { get; set; }
-		public DateTime DataInclusao { get; set; }
 	}
 }
 

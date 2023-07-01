@@ -80,8 +80,7 @@ namespace DesafioXamarin.ViewModels
                 Departamento = new Departamento
                 {
                     Id = Guid.NewGuid().ToString(),
-                    NomeDepartamento = Departamento,
-                    DataInclusao = DateTime.Now
+                    NomeDepartamento = Departamento
                 },
                 Descricao = Sugestao,
                 Justificativa = Justificativa

@@ -16,12 +16,12 @@ namespace DesafioXamarin.Services
         {
             departamentosList = new List<Departamento>()
             {
-                new Departamento { Id = Guid.NewGuid().ToString(), NomeDepartamento = "Administrativo", DataInclusao = DateTime.Now },
-                new Departamento { Id = Guid.NewGuid().ToString(), NomeDepartamento = "Comercial", DataInclusao = DateTime.Now },
-                new Departamento { Id = Guid.NewGuid().ToString(), NomeDepartamento = "Financeiro", DataInclusao = DateTime.Now },
-                new Departamento { Id = Guid.NewGuid().ToString(), NomeDepartamento = "RH", DataInclusao = DateTime.Now },
-                new Departamento { Id = Guid.NewGuid().ToString(), NomeDepartamento = "TI", DataInclusao = DateTime.Now },
-                new Departamento { Id = Guid.NewGuid().ToString(), NomeDepartamento = "Producao", DataInclusao = DateTime.Now }
+                new Departamento { Id = Guid.NewGuid().ToString(), NomeDepartamento = "Administrativo" },
+                new Departamento { Id = Guid.NewGuid().ToString(), NomeDepartamento = "Comercial" },
+                new Departamento { Id = Guid.NewGuid().ToString(), NomeDepartamento = "Financeiro" },
+                new Departamento { Id = Guid.NewGuid().ToString(), NomeDepartamento = "RH" },
+                new Departamento { Id = Guid.NewGuid().ToString(), NomeDepartamento = "TI" },
+                new Departamento { Id = Guid.NewGuid().ToString(), NomeDepartamento = "Producao" }
             };
         }
 

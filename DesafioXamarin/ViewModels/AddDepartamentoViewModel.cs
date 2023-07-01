@@ -46,8 +46,7 @@ namespace DesafioXamarin.ViewModels
                 Departamento novoDepartamento = new Departamento()
                 {
                     Id = Guid.NewGuid().ToString(),
-                    NomeDepartamento = Departamento,
-                    DataInclusao = DateTime.Now,
+                    NomeDepartamento = Departamento
                 };
 
                 await Database.AddDepartamentoAsync(novoDepartamento);
