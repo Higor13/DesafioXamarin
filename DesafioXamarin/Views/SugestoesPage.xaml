@@ -16,35 +16,52 @@
         x:DataType="local:SugestoesViewModel"
         Command="{Binding LoadItemsCommand}"
         IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView
-            x:Name="ItemsListView"
-            ItemsSource="{Binding Items}"
-            SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout
-                        Padding="10"
-                        x:DataType="model:Item">
-                        <Label
-                            Text="{Binding Text}" 
-                            LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16" />
-                        <Label
-                            Text="{Binding Description}" 
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:SugestoesViewModel}}, Path=ItemTapped}"		
-                                CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <StackLayout>
+            <Picker
+                Title="Filtar por departamento">
+                <Picker.ItemsSource>
+                    <x:Array
+                        Type="{x:Type x:String}">
+                        <x:String>Administrativo</x:String>
+                        <x:String>Financeiro</x:String>
+                        <x:String>RH</x:String>
+                        <x:String>Comercial</x:String>
+                        <x:String>Produção</x:String>
+                        <x:String>Todos</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <CollectionView
+                x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout
+                            Padding="10"
+                            x:DataType="model:Item">
+                            <Label
+                                Text="{Binding Text}" 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="16" />
+                            <Label
+                                Text="{Binding Description}" 
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    NumberOfTapsRequired="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:SugestoesViewModel}}, Path=ItemTapped}"		
+                                    CommandParameter="{Binding .}">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
     </RefreshView>
 </ContentPage>
