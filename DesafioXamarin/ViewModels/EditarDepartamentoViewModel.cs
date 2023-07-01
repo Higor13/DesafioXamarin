@@ -1,5 +1,6 @@
 ﻿using System;
 using DesafioXamarin.Models;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace DesafioXamarin.ViewModels
@@ -7,6 +8,8 @@ namespace DesafioXamarin.ViewModels
     [QueryProperty(nameof(Departamento), nameof(Departamento))]
     public class EditarDepartamentoViewModel : BaseViewModel
 	{
+        Departamento departamentoParameter;
+
         private string _nomeDepartamento;
         public string NomeDepartamento
         {
@@ -21,7 +24,17 @@ namespace DesafioXamarin.ViewModels
             {
                 return _departamento;
             }
-            set => SetProperty(ref _departamento, value);
+            set
+            {
+                _departamento = value;
+                DeserializeDepartamento(value);
+            }
+        }
+
+        void DeserializeDepartamento(string value)
+        {
+            departamentoParameter = JsonConvert.DeserializeObject<Departamento>(value);
+            NomeDepartamento = departamentoParameter.NomeDepartamento;
         }
 
         public Command SalvarCommand { get; }
@@ -52,12 +65,12 @@ namespace DesafioXamarin.ViewModels
             {
                 Departamento newDepartamento = new Departamento()
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = departamentoParameter.Id,
                     NomeDepartamento = NomeDepartamento,
                     DataInclusao = DateTime.Now,
                 };
 
-                await DepartamentoDataStore.AddDepartamentoAsync(newDepartamento);
+                await DepartamentoDataStore.UpdateDepartamentoAsync(newDepartamento);
 
                 await Shell.Current.GoToAsync("..");
             }

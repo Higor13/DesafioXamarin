@@ -13,7 +13,7 @@
                 Text="Departamento"
                 FontSize="Medium" />
             <Entry
-                Text="{Binding Departamento, Mode=TwoWay}"
+                Text="{Binding NomeDepartamento, Mode=TwoWay}"
                 FontSize="Medium" />
 
             <StackLayout
