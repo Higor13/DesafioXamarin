@@ -10,7 +10,7 @@ namespace DesafioXamarin.Views
 {
     public partial class AddSugestaoPage : ContentPage
     {
-        public Item Item { get; set; }
+        public Sugestao Item { get; set; }
 
         public AddSugestaoPage()
         {

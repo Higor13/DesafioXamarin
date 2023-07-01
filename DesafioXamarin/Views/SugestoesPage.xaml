@@ -40,14 +40,14 @@
                     <DataTemplate>
                         <StackLayout
                             Padding="10"
-                            x:DataType="model:Item">
+                            x:DataType="model:Sugestao">
                             <Label
-                                Text="{Binding Text}" 
+                                Text="{Binding Titulo}" 
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="16" />
                             <Label
-                                Text="{Binding Description}" 
+                                Text="{Binding Descricao}" 
                                 LineBreakMode="NoWrap"
                                 Style="{DynamicResource ListItemDetailTextStyle}"
                                 FontSize="13" />

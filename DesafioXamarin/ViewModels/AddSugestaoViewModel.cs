@@ -65,11 +65,14 @@ namespace DesafioXamarin.ViewModels
 
         private async void SalvarAsync()
         {
-            Item newItem = new Item()
+            Sugestao newItem = new Sugestao()
             {
                 Id = Guid.NewGuid().ToString(),
-                Text = Nome,
-                Description = Sugestao
+                Titulo = string.Empty,
+                Nome = Nome,
+                Departamento = string.Empty,
+                Descricao = Sugestao,
+                Justificativa = string.Empty
             };
 
             await DataStore.AddItemAsync(newItem);

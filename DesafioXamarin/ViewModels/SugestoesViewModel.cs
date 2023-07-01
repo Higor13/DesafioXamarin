@@ -10,19 +10,19 @@ namespace DesafioXamarin.ViewModels
 {
     public class SugestoesViewModel : BaseViewModel
     {
-        private Item _selectedItem;
+        private Sugestao _selectedItem;
 
-        public ObservableCollection<Item> Items { get; }
+        public ObservableCollection<Sugestao> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
-        public Command<Item> ItemTapped { get; }
+        public Command<Sugestao> ItemTapped { get; }
 
         public SugestoesViewModel()
         {
-            Items = new ObservableCollection<Item>();
+            Items = new ObservableCollection<Sugestao>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            ItemTapped = new Command<Item>(OnItemSelected);
+            ItemTapped = new Command<Sugestao>(OnItemSelected);
 
             AddItemCommand = new Command(OnAddItem);
         }
@@ -56,7 +56,7 @@ namespace DesafioXamarin.ViewModels
             SelectedItem = null;
         }
 
-        public Item SelectedItem
+        public Sugestao SelectedItem
         {
             get => _selectedItem;
             set
@@ -71,7 +71,7 @@ namespace DesafioXamarin.ViewModels
             await Shell.Current.GoToAsync(nameof(AddSugestaoPage));
         }
 
-        async void OnItemSelected(Item item)
+        async void OnItemSelected(Sugestao item)
         {
             if (item == null)
                 return;
