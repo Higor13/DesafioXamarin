@@ -48,12 +48,19 @@ namespace DesafioXamarin.ViewModels
 
         async Task ExcluirDepartamentoAsync(Departamento departamento)
         {
-            var resposta = await Shell.Current.DisplayAlert("Atenção!", $"Deseja excluir o departamento {departamento.NomeDepartamento}?","Sim", "Não");
-
-            if (resposta)
+            try
             {
-                await Database.DeleteDepartamentoAsync(departamento.Id);
-                IsBusy = true;
+                var resposta = await Shell.Current.DisplayAlert("Atenção!", $"Deseja excluir o departamento {departamento.NomeDepartamento}?", "Sim", "Não");
+
+                if (resposta)
+                {
+                    await Database.DeleteDepartamentoAsync(departamento.Id);
+                    IsBusy = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 
