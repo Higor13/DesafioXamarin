@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace DesafioXamarin.Services
 {
-    public class SugestaoStoreService : ISugestaoStore<Sugestao>
+    public class SugestaoStoreService : IDatabase
     {
         readonly List<Sugestao> sugestoesList;
+        readonly List<Departamento> departamentosList;
 
         public SugestaoStoreService()
         {
@@ -22,6 +23,16 @@ namespace DesafioXamarin.Services
                 new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 4", Nome = "João", Departamento = new Departamento { NomeDepartamento = "TI"}, Descricao ="Descrição da sugestão 4", Justificativa = "Justificativa 4" },
                 new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 5", Nome = "João", Departamento = new Departamento { NomeDepartamento = "TI"}, Descricao ="Descrição da sugestão 5", Justificativa = "Justificativa 5" },
                 new Sugestao { Id = Guid.NewGuid().ToString(), Titulo = "Titulo 6", Nome = "João", Departamento = new Departamento { NomeDepartamento = "TI"}, Descricao ="Descrição da sugestão 6", Justificativa = "Justificativa 6" }
+            };
+
+            departamentosList = new List<Departamento>()
+            {
+                new Departamento { Id = Guid.NewGuid().ToString(), NomeDepartamento = "Administrativo", DataInclusao = DateTime.Now },
+                new Departamento { Id = Guid.NewGuid().ToString(), NomeDepartamento = "Comercial", DataInclusao = DateTime.Now },
+                new Departamento { Id = Guid.NewGuid().ToString(), NomeDepartamento = "Financeiro", DataInclusao = DateTime.Now },
+                new Departamento { Id = Guid.NewGuid().ToString(), NomeDepartamento = "RH", DataInclusao = DateTime.Now },
+                new Departamento { Id = Guid.NewGuid().ToString(), NomeDepartamento = "TI", DataInclusao = DateTime.Now },
+                new Departamento { Id = Guid.NewGuid().ToString(), NomeDepartamento = "Producao", DataInclusao = DateTime.Now }
             };
         }
 
@@ -57,6 +68,40 @@ namespace DesafioXamarin.Services
         public async Task<IEnumerable<Sugestao>> GetSugestoesAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(sugestoesList);
+        }
+
+        public async Task<bool> AddDepartamentoAsync(Departamento item)
+        {
+            departamentosList.Add(item);
+
+            return await Task.FromResult(true);
+        }
+
+        public async Task<bool> DeleteDepartamentoAsync(string id)
+        {
+            var oldItem = departamentosList.Where((Departamento arg) => arg.Id == id).FirstOrDefault();
+            departamentosList.Remove(oldItem);
+
+            return await Task.FromResult(true);
+        }
+
+        public async Task<Departamento> GetDepartamentoAsync(string id)
+        {
+            return await Task.FromResult(departamentosList.FirstOrDefault(s => s.Id == id));
+        }
+
+        public async Task<IEnumerable<Departamento>> GetDepartamentosAsync(bool forceRefresh = false)
+        {
+            return await Task.FromResult(departamentosList);
+        }
+
+        public async Task<bool> UpdateDepartamentoAsync(Departamento item)
+        {
+            var oldItem = departamentosList.Where((Departamento arg) => arg.Id == item.Id).FirstOrDefault();
+            departamentosList.Remove(oldItem);
+            departamentosList.Add(item);
+
+            return await Task.FromResult(true);
         }
     }
 }

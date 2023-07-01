@@ -45,7 +45,7 @@ namespace DesafioXamarin.ViewModels
 
             if (resposta)
             {
-                await DepartamentoDataStore.DeleteDepartamentoAsync(departamento.Id);
+                await Database.DeleteDepartamentoAsync(departamento.Id);
                 IsBusy = true;
             }
         }
@@ -62,7 +62,7 @@ namespace DesafioXamarin.ViewModels
             try
             {
                 Departamentos.Clear();
-                var items = await DepartamentoDataStore.GetDepartamentosAsync(true);
+                var items = await Database.GetDepartamentosAsync(true);
                 foreach (var item in items)
                 {
                     Departamentos.Add(item);

@@ -63,14 +63,14 @@ namespace DesafioXamarin.ViewModels
         {
             try
             {
-                Departamento newDepartamento = new Departamento()
+                Departamento novoDepartamento = new Departamento()
                 {
                     Id = departamentoParameter.Id,
                     NomeDepartamento = NomeDepartamento,
                     DataInclusao = DateTime.Now,
                 };
 
-                await DepartamentoDataStore.UpdateDepartamentoAsync(newDepartamento);
+                await Database.UpdateDepartamentoAsync(novoDepartamento);
 
                 await Shell.Current.GoToAsync("..");
             }

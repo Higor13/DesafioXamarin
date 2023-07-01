@@ -64,7 +64,7 @@ namespace DesafioXamarin.ViewModels
         {
             try
             {
-                Sugestao item = await SugestoesDataStore.GetSugestaoAsync(itemId);
+                Sugestao item = await Database.GetSugestaoAsync(itemId);
                 Nome = item.Nome;
                 Titulo = item.Titulo;
                 Sugestao = item.Descricao;

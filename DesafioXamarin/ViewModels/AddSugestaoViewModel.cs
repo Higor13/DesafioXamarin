@@ -72,7 +72,7 @@ namespace DesafioXamarin.ViewModels
 
         private async void SalvarAsync()
         {
-            Sugestao newItem = new Sugestao()
+            Sugestao novoItem = new Sugestao()
             {
                 Id = Guid.NewGuid().ToString(),
                 Titulo = Titulo,
@@ -87,7 +87,7 @@ namespace DesafioXamarin.ViewModels
                 Justificativa = Justificativa
             };
 
-            await SugestoesDataStore.AddSugestaoAsync(newItem);
+            await Database.AddSugestaoAsync(novoItem);
 
             await Shell.Current.GoToAsync("..");
         }
