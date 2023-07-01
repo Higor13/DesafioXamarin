@@ -81,8 +81,7 @@ namespace DesafioXamarin.Services
 
         public async Task<bool> DeleteDepartamentoAsync(int id)
         {
-            var oldItem = departamentosList.Where((Departamento arg) => arg.Id == id).FirstOrDefault();
-            departamentosList.Remove(oldItem);
+            _connection.Delete<Departamento>(id);
 
             return await Task.FromResult(true);
         }
