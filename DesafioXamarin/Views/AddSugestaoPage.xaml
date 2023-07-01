@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DesafioXamarin.Views.AddSugestaoPage"
              Shell.PresentationMode="ModalAnimated"
-             Title="New Item"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:vm="clr-namespace:DesafioXamarin.ViewModels"
+             x:DataType="vm:AddSugestaoViewModel"
+             Title="Nova Sugestão"
              ios:Page.UseSafeArea="true">
 
     <ContentPage.Content>
@@ -17,6 +19,13 @@
                 FontSize="Medium" />
             <Entry
                 Text="{Binding Nome, Mode=TwoWay}"
+                FontSize="Medium" />
+
+            <Label
+                Text="Titulo"
+                FontSize="Medium" />
+            <Entry
+                Text="{Binding Titulo, Mode=TwoWay}"
                 FontSize="Medium" />
 
             <Label

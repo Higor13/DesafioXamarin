@@ -11,10 +11,10 @@ namespace DesafioXamarin.ViewModels
     public class AddSugestaoViewModel : BaseViewModel
     {
         private string _nome;
+        private string _titulo;
         private string _departamento;
         private string _sugestao;
         private string _justificativa;
-
 
         public Command SalvarCommand { get; }
         public Command CancelarCommand { get; }
@@ -23,6 +23,12 @@ namespace DesafioXamarin.ViewModels
         {
             get => _nome;
             set => SetProperty(ref _nome, value);
+        }
+
+        public string Titulo
+        {
+            get => _titulo;
+            set => SetProperty(ref _titulo, value);
         }
 
         public string Sugestao
@@ -69,11 +75,11 @@ namespace DesafioXamarin.ViewModels
             Sugestao newItem = new Sugestao()
             {
                 Id = Guid.NewGuid().ToString(),
-                Titulo = string.Empty,
+                Titulo = Titulo,
                 Nome = Nome,
                 Departamento = DepartamentosEnum.Administrativo,
                 Descricao = Sugestao,
-                Justificativa = string.Empty
+                Justificativa = Justificativa
             };
 
             await DataStore.AddSugestaoAsync(newItem);
