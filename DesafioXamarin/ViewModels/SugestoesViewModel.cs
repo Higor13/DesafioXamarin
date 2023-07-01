@@ -30,14 +30,14 @@ namespace DesafioXamarin.ViewModels
         public SugestoesViewModel()
         {
             Items = new ObservableCollection<Sugestao>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            LoadItemsCommand = new Command(ExecuteLoadItemsCommand);
 
             ItemTapped = new Command<Sugestao>(OnItemSelected);
 
             AddItemCommand = new Command(OnAddItem);
         }
 
-        async Task ExecuteLoadItemsCommand()
+        void ExecuteLoadItemsCommand()
         {
             IsBusy = true;
 
@@ -45,7 +45,7 @@ namespace DesafioXamarin.ViewModels
             {
                 Items.Clear();
 
-                var items = await Database.GetSugestoesAsync(true);
+                var items = Database.GetSugestoes(true);
 
                 foreach (var item in items)
                 {

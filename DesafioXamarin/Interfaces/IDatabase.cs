@@ -11,7 +11,7 @@ namespace DesafioXamarin.Interfaces
         Task<bool> UpdateSugestaoAsync(Sugestao item);
         Task<bool> DeleteSugestaoAsync(int id);
         Sugestao GetSugestao(int id);
-        Task<IEnumerable<Sugestao>> GetSugestoesAsync(bool forceRefresh = false);
+        List<Sugestao> GetSugestoes(bool forceRefresh = false);
 
         Task<bool> AddDepartamentoAsync(Departamento item);
         Task<bool> UpdateDepartamentoAsync(Departamento item);

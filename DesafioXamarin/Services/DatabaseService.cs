@@ -68,9 +68,8 @@ namespace DesafioXamarin.Services
             return _connection.Get<Sugestao>(id);
         }
 
-        public async Task<IEnumerable<Sugestao>> GetSugestoesAsync(bool forceRefresh = false)
+        public List<Sugestao> GetSugestoes(bool forceRefresh = false)
         {
-            //return await Task.FromResult(sugestoesList);
             return _connection.Table<Sugestao>().ToList();
         }
 
