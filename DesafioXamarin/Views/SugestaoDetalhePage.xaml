@@ -8,34 +8,41 @@
     Title="Detalhes">
 
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout
+            Spacing="20"
+            Padding="15">
             <StackLayout>
                 <Label
-                    Text="Titulo" />
+                    Text="Titulo:"
+                    FontSize="Medium"/>
                 <Label
                     Text="{Binding Titulo}" />
             </StackLayout>
             <StackLayout>
                 <Label
-                    Text="Colaborador" />
+                    Text="Colaborador:"
+                    FontSize="Medium"/>
                 <Label
                     Text="{Binding Nome}" />
             </StackLayout>
             <StackLayout>
                 <Label
-                    Text="Departamento" />
+                    Text="Departamento:"
+                    FontSize="Medium"/>
                 <Label
                     Text="{Binding Departamento}" />
             </StackLayout>
             <StackLayout>
                 <Label
-                    Text="Descricao" />
+                    Text="Descricao:"
+                    FontSize="Medium"/>
                 <Label
                     Text="{Binding Sugestao}" />
             </StackLayout>
             <StackLayout>
                 <Label
-                    Text="Justificativa" />
+                    Text="Justificativa:"
+                    FontSize="Medium"/>
                 <Label
                     Text="{Binding Justificativa}" />
             </StackLayout>
