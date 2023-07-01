@@ -21,9 +21,11 @@
   <ItemGroup>
     <None Remove="Enums\" />
     <None Remove="Interfaces\" />
+    <None Remove="Database\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Enums\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="Database\" />
   </ItemGroup>
 </Project>

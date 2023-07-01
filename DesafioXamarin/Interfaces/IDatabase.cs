@@ -9,14 +9,14 @@ namespace DesafioXamarin.Interfaces
     {
         Task<bool> AddSugestaoAsync(Sugestao item);
         Task<bool> UpdateSugestaoAsync(Sugestao item);
-        Task<bool> DeleteSugestaoAsync(string id);
-        Task<Sugestao> GetSugestaoAsync(string id);
+        Task<bool> DeleteSugestaoAsync(int id);
+        Task<Sugestao> GetSugestaoAsync(int id);
         Task<IEnumerable<Sugestao>> GetSugestoesAsync(bool forceRefresh = false);
 
         Task<bool> AddDepartamentoAsync(Departamento item);
         Task<bool> UpdateDepartamentoAsync(Departamento item);
-        Task<bool> DeleteDepartamentoAsync(string id);
-        Task<Departamento> GetDepartamentoAsync(string id);
+        Task<bool> DeleteDepartamentoAsync(int id);
+        Task<Departamento> GetDepartamentoAsync(int id);
         Task<IEnumerable<Departamento>> GetDepartamentosAsync(bool forceRefresh = false);
     }
 }

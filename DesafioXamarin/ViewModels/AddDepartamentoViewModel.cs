@@ -45,7 +45,6 @@ namespace DesafioXamarin.ViewModels
             {
                 Departamento novoDepartamento = new Departamento()
                 {
-                    Id = Guid.NewGuid().ToString(),
                     NomeDepartamento = Departamento
                 };
 

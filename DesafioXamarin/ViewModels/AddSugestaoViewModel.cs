@@ -74,14 +74,9 @@ namespace DesafioXamarin.ViewModels
         {
             Sugestao novoItem = new Sugestao()
             {
-                Id = Guid.NewGuid().ToString(),
                 Titulo = Titulo,
                 Nome = Nome,
-                Departamento = new Departamento
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    NomeDepartamento = Departamento
-                },
+                Departamento = Departamento,
                 Descricao = Sugestao,
                 Justificativa = Justificativa
             };

@@ -44,10 +44,10 @@ namespace DesafioXamarin.ViewModels
             set => SetProperty(ref _justificativa, value);
         }
 
-        private string itemId;
-        public string Id { get; set; }
+        private int itemId;
+        public int Id { get; set; }
 
-        public string ItemId
+        public int ItemId
         {
             get
             {
@@ -60,7 +60,7 @@ namespace DesafioXamarin.ViewModels
             }
         }
 
-        public async void LoadItemId(string itemId)
+        public async void LoadItemId(int itemId)
         {
             try
             {

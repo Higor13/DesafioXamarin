@@ -1,11 +1,14 @@
 ﻿using System;
 using DesafioXamarin.Enums;
+using SQLite;
 
 namespace DesafioXamarin.Models
 {
-	public class Departamento
+    [Table("Departamento")]
+    public class Departamento
 	{
-		public string Id { get; set; }
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
 		public string NomeDepartamento { get; set; }
 	}
 }
