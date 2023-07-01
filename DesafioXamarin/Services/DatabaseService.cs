@@ -86,9 +86,9 @@ namespace DesafioXamarin.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<Departamento> GetDepartamentoAsync(int id)
+        public Departamento GetDepartamento(int id)
         {
-            return await Task.FromResult(departamentosList.FirstOrDefault(s => s.Id == id));
+            return _connection.Get<Departamento>(id);
         }
 
         public List<Departamento> GetDepartamentos(bool forceRefresh = false)
