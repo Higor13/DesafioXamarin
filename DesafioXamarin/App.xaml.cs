@@ -11,6 +11,7 @@ namespace DesafioXamarin
     public partial class App : Application
     {
         public static DatabaseContext Database { get; private set; }
+        public static string DepartamentoFiltroSelecionado { get; set; }
 
         public App()
         {

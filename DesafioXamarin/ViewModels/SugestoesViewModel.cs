@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using static SQLite.SQLite3;
 
@@ -59,24 +60,34 @@ namespace DesafioXamarin.ViewModels
 
             CarregarSugestoesCommand = new Command(CarregarSugestoes);
             SugestaoSelecionadaCommand = new Command<Sugestao>(async (item) => await OnSugestaoSelecionadaAsync(item));
-            FiltrarCommand = new Command(FiltarPorDepartamento);
+            FiltrarCommand = new Command(FiltrarPorDepartamento);
             AddSugestaoCommand = new Command(async () => await AddSugestaoAsync());
         }
 
-        void FiltarPorDepartamento()
+        void FiltrarPorDepartamento()
         {
             try
             {
+                if (!string.IsNullOrEmpty(Departamento))
+                {
+                    Preferences.Set("departamentoFiltroSelecionado", Departamento);
+                }
+                
                 Items.Clear();
 
                 if(Departamento == "Todos")
                 {
                     CarregarSugestoes();
                 }
+                else if(!string.IsNullOrEmpty(Preferences.Get("departamentoFiltroSelecionado", string.Empty)))
+                {
+                    Departamento = Preferences.Get("departamentoFiltroSelecionado", string.Empty);
+                    List<Sugestao> result = Database.GetSugestoesPorDepartamento(Preferences.Get("departamentoFiltroSelecionado", string.Empty));
+                    Items = new ObservableCollection<Sugestao>(result);
+                }
                 else
                 {
-                    List<Sugestao> result = Database.GetSugestoesPorDepartamento(Departamento);
-                    Items = new ObservableCollection<Sugestao>(result);
+                    CarregarSugestoes();
                 }
             }
             catch (Exception ex)
