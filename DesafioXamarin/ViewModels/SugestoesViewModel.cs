@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace DesafioXamarin.ViewModels
@@ -38,7 +39,14 @@ namespace DesafioXamarin.ViewModels
             set => SetProperty(ref _departamento, value);
         }
 
-        public ObservableCollection<Sugestao> Items { get; }
+        //public ObservableCollection<Sugestao> Items { get; set; }
+        private ObservableCollection<Sugestao> _items;
+        public ObservableCollection<Sugestao> Items
+        {
+            get => _items;
+            set => SetProperty(ref _items, value);
+        }
+
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
         public Command<Sugestao> ItemTapped { get; }
@@ -48,11 +56,10 @@ namespace DesafioXamarin.ViewModels
         {
             Departamentos = new ObservableCollection<string>();
             Items = new ObservableCollection<Sugestao>();
-            LoadItemsCommand = new Command(ExecuteLoadItemsCommand);
 
+            LoadItemsCommand = new Command(ExecuteLoadItemsCommand);
             ItemTapped = new Command<Sugestao>(OnItemSelected);
             FiltrarCommand = new Command(FiltarPorDepartamento);
-
             AddItemCommand = new Command(OnAddItem);
 
             Task.Run(async () => await Database.AddSugestaoAsync(new Sugestao { Titulo = "Titulo 1", Nome = "Higor", Departamento = "TI", Descricao = "Descrição da sugestão 1", Justificativa = "Justificativa 1" }));
@@ -65,7 +72,24 @@ namespace DesafioXamarin.ViewModels
 
         void FiltarPorDepartamento()
         {
-            var result = Database.GetSugestoesPorDepartamento(Departamento);
+            try
+            {
+                Items.Clear();
+
+                if(Departamento == "Todos")
+                {
+                    ExecuteLoadItemsCommand();
+                }
+                else
+                {
+                    List<Sugestao> result = Database.GetSugestoesPorDepartamento(Departamento);
+                    Items = new ObservableCollection<Sugestao>(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
         void CarregarDepartamentos()
@@ -86,7 +110,7 @@ namespace DesafioXamarin.ViewModels
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex);
             }
         }
 
