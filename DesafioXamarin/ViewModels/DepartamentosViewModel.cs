@@ -13,11 +13,11 @@ namespace DesafioXamarin.ViewModels
     {
         public ObservableCollection<Departamento> Departamentos { get; }
 
-        private bool _isSemDepartamentosMsg;
-        public bool IsSemDepartamentosMsg
+        private bool _isSemDepartamentosMsgVisible;
+        public bool IsSemDepartamentosMsgVisible
         {
-            get => _isSemDepartamentosMsg;
-            set => SetProperty(ref _isSemDepartamentosMsg, value);
+            get => _isSemDepartamentosMsgVisible;
+            set => SetProperty(ref _isSemDepartamentosMsgVisible, value);
         }
 
         private bool _isCollectionViewVisible;
@@ -86,7 +86,7 @@ namespace DesafioXamarin.ViewModels
                 if(items.Count > 0)
                 {
                     IsCollectionViewVisible = true;
-                    IsSemDepartamentosMsg = false;
+                    IsSemDepartamentosMsgVisible = false;
 
                     foreach (var item in items)
                     {
@@ -96,7 +96,7 @@ namespace DesafioXamarin.ViewModels
                 else
                 {
                     IsCollectionViewVisible = false;
-                    IsSemDepartamentosMsg = true;
+                    IsSemDepartamentosMsgVisible = true;
                 }
                 
             }

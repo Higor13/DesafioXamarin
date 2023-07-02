@@ -20,7 +20,7 @@
                 VerticalTextAlignment="Center"
                 HorizontalTextAlignment="Center"
                 Text="Não há departamentos cadastrados."
-                IsVisible="{Binding IsSemDepartamentosMsg}"/>
+                IsVisible="{Binding IsSemDepartamentosMsgVisible}"/>
             <CollectionView
                 IsVisible="{Binding IsCollectionViewVisible}"
                 x:Name="collectionView"
