@@ -83,7 +83,6 @@ namespace DesafioXamarin.ViewModels
                 {
                     parcialList.Add(departamento.NomeDepartamento);
                 }
-                parcialList.Add("Todos");
                 Departamentos = new ObservableCollection<string>(parcialList);
             }
             catch (Exception ex)
