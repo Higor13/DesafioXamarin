@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using DesafioXamarin.Models;
 using Newtonsoft.Json;
 using Xamarin.Forms;
@@ -8,7 +9,7 @@ namespace DesafioXamarin.ViewModels
     [QueryProperty(nameof(Departamento), nameof(Departamento))]
     public class EditarDepartamentoViewModel : BaseViewModel
 	{
-        Departamento departamentoParameter;
+        Departamento _departamentoParameter;
 
         private string _nomeDepartamento;
         public string NomeDepartamento
@@ -31,22 +32,22 @@ namespace DesafioXamarin.ViewModels
             }
         }
 
-        void DeserializeDepartamento(string value)
-        {
-            departamentoParameter = JsonConvert.DeserializeObject<Departamento>(value);
-            NomeDepartamento = departamentoParameter.NomeDepartamento;
-        }
-
         public Command SalvarCommand { get; }
         public Command CancelarCommand { get; }
 
         public EditarDepartamentoViewModel()
         {
-            SalvarCommand = new Command(SalvarAsync, ValidateSave);
-            CancelarCommand = new Command(CancelarAsync);
+            SalvarCommand = new Command(async () => await SalvarAsync(), ValidateSave);
+            CancelarCommand = new Command(async () => await CancelarAsync());
 
             this.PropertyChanged +=
                 (_, __) => SalvarCommand.ChangeCanExecute();
+        }
+
+        void DeserializeDepartamento(string value)
+        {
+            _departamentoParameter = JsonConvert.DeserializeObject<Departamento>(value);
+            NomeDepartamento = _departamentoParameter.NomeDepartamento;
         }
 
         private bool ValidateSave()
@@ -54,18 +55,18 @@ namespace DesafioXamarin.ViewModels
             return !String.IsNullOrWhiteSpace(_nomeDepartamento);
         }
 
-        private async void CancelarAsync()
+        private async Task CancelarAsync()
         {
             await Shell.Current.GoToAsync("..");
         }
 
-        private async void SalvarAsync()
+        private async Task SalvarAsync()
         {
             try
             {
                 Departamento novoDepartamento = new Departamento()
                 {
-                    Id = departamentoParameter.Id,
+                    Id = _departamentoParameter.Id,
                     NomeDepartamento = NomeDepartamento
                 };
 
@@ -75,7 +76,7 @@ namespace DesafioXamarin.ViewModels
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex);
             }
         }
     }
