@@ -10,12 +10,12 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem
             Text="Adicionar"
-            Command="{Binding AddItemCommand}" />
+            Command="{Binding AddSugestaoCommand}" />
     </ContentPage.ToolbarItems>
 
     <RefreshView
         x:DataType="local:SugestoesViewModel"
-        Command="{Binding LoadItemsCommand}"
+        Command="{Binding CarregarSugestoesCommand}"
         IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <StackLayout>
             <Picker
@@ -57,7 +57,7 @@
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer 
                                     NumberOfTapsRequired="1"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:SugestoesViewModel}}, Path=ItemTapped}"		
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:SugestoesViewModel}}, Path=SugestaoSelecionada}"		
                                     CommandParameter="{Binding .}">
                                 </TapGestureRecognizer>
                             </StackLayout.GestureRecognizers>

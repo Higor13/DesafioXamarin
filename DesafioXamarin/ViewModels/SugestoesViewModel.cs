@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace DesafioXamarin.ViewModels
@@ -13,7 +13,6 @@ namespace DesafioXamarin.ViewModels
     public class SugestoesViewModel : BaseViewModel
     {
         private ObservableCollection<string> _departamentos;
-
         public ObservableCollection<string> Departamentos
         {
             get => _departamentos;
@@ -21,14 +20,13 @@ namespace DesafioXamarin.ViewModels
         }
 
         private Sugestao _selectedItem;
-
         public Sugestao SelectedItem
         {
             get => _selectedItem;
             set
             {
                 SetProperty(ref _selectedItem, value);
-                OnItemSelected(value);
+                OnSugestaoSelecionada(value);
             }
         }
 
@@ -39,7 +37,6 @@ namespace DesafioXamarin.ViewModels
             set => SetProperty(ref _departamento, value);
         }
 
-        //public ObservableCollection<Sugestao> Items { get; set; }
         private ObservableCollection<Sugestao> _items;
         public ObservableCollection<Sugestao> Items
         {
@@ -47,9 +44,9 @@ namespace DesafioXamarin.ViewModels
             set => SetProperty(ref _items, value);
         }
 
-        public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get; }
-        public Command<Sugestao> ItemTapped { get; }
+        public Command CarregarSugestoesCommand { get; }
+        public Command AddSugestaoCommand { get; }
+        public Command<Sugestao> SugestaoSelecionada { get; }
         public Command FiltrarCommand { get; }
 
         public SugestoesViewModel()
@@ -57,17 +54,10 @@ namespace DesafioXamarin.ViewModels
             Departamentos = new ObservableCollection<string>();
             Items = new ObservableCollection<Sugestao>();
 
-            LoadItemsCommand = new Command(ExecuteLoadItemsCommand);
-            ItemTapped = new Command<Sugestao>(OnItemSelected);
+            CarregarSugestoesCommand = new Command(CarregarSugestoes);
+            SugestaoSelecionada = new Command<Sugestao>(OnSugestaoSelecionada);
             FiltrarCommand = new Command(FiltarPorDepartamento);
-            AddItemCommand = new Command(OnAddItem);
-
-            Task.Run(async () => await Database.AddSugestaoAsync(new Sugestao { Titulo = "Titulo 1", Nome = "Higor", Departamento = "TI", Descricao = "Descrição da sugestão 1", Justificativa = "Justificativa 1" }));
-            Task.Run(async () => await Database.AddSugestaoAsync(new Sugestao { Titulo = "Titulo 2", Nome = "João", Departamento = "Financeiro", Descricao = "Descrição da sugestão 2", Justificativa = "Justificativa 2" }));
-            Task.Run(async () => await Database.AddSugestaoAsync(new Sugestao { Titulo = "Titulo 3", Nome = "José", Departamento = "Administrativo", Descricao = "Descrição da sugestão 3", Justificativa = "Justificativa 3" }));
-            Task.Run(async () => await Database.AddSugestaoAsync(new Sugestao { Titulo = "Titulo 4", Nome = "Maria", Departamento = "Comercial", Descricao = "Descrição da sugestão 4", Justificativa = "Justificativa 4" }));
-            Task.Run(async () => await Database.AddSugestaoAsync(new Sugestao { Titulo = "Titulo 5", Nome = "Tiago", Departamento = "RH", Descricao = "Descrição da sugestão 5", Justificativa = "Justificativa 5" }));
-            Task.Run(async () => await Database.AddSugestaoAsync(new Sugestao { Titulo = "Titulo 6", Nome = "Pedro", Departamento = "Comercial", Descricao = "Descrição da sugestão 6", Justificativa = "Justificativa 6" }));
+            AddSugestaoCommand = new Command(async () => await AddSugestaoAsync());
         }
 
         void FiltarPorDepartamento()
@@ -78,7 +68,7 @@ namespace DesafioXamarin.ViewModels
 
                 if(Departamento == "Todos")
                 {
-                    ExecuteLoadItemsCommand();
+                    CarregarSugestoes();
                 }
                 else
                 {
@@ -114,7 +104,7 @@ namespace DesafioXamarin.ViewModels
             }
         }
 
-        void ExecuteLoadItemsCommand()
+        void CarregarSugestoes()
         {
             IsBusy = true;
 
@@ -147,12 +137,12 @@ namespace DesafioXamarin.ViewModels
             CarregarDepartamentos();
         }
 
-        private async void OnAddItem(object obj)
+        private async Task AddSugestaoAsync()
         {
             await Shell.Current.GoToAsync(nameof(AddSugestaoPage));
         }
 
-        async void OnItemSelected(Sugestao item)
+        async void OnSugestaoSelecionada(Sugestao item)
         {
             if (item == null)
                 return;
