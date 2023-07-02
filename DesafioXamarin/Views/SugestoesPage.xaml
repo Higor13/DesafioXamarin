@@ -17,7 +17,8 @@
         x:DataType="local:SugestoesViewModel"
         Command="{Binding CarregarSugestoesCommand}"
         IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <StackLayout>
+        <Grid
+            RowDefinitions="*,13*">
             <Picker
                 Title="Filtar por departamento"
                 SelectedItem="{Binding Departamento, Mode=TwoWay}"
@@ -26,11 +27,19 @@
                     <xct:EventToCommandBehavior
                         EventName="SelectedIndexChanged"
                         Command="{Binding FiltrarCommand}"
-                        CommandParameter="{Binding .}"/>
+                        CommandParameter="{Binding .}" />
                 </Picker.Behaviors>
             </Picker>
 
+            <Label
+                Grid.Row="1"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"
+                Text="Não há sugestões cadastrados."
+                IsVisible="{Binding IsSemSugestoesMsgVisible}" />
             <CollectionView
+                Grid.Row="1"
+                IsVisible="{Binding IsCollectionViewVisible}"
                 Margin="5"
                 x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"
@@ -71,10 +80,10 @@
                                 </StackLayout>
                             </Frame>
                         </StackLayout>
-                        
+
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </StackLayout>
+        </Grid>
     </RefreshView>
 </ContentPage>

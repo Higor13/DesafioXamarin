@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using static SQLite.SQLite3;
 
 namespace DesafioXamarin.ViewModels
 {
@@ -30,6 +31,20 @@ namespace DesafioXamarin.ViewModels
         {
             get => _items;
             set => SetProperty(ref _items, value);
+        }
+
+        private bool _isSemSugestoesMsgVisible;
+        public bool IsSemSugestoesMsgVisible
+        {
+            get => _isSemSugestoesMsgVisible;
+            set => SetProperty(ref _isSemSugestoesMsgVisible, value);
+        }
+
+        private bool _isCollectionViewVisible;
+        public bool IsCollectionViewVisible
+        {
+            get => _isCollectionViewVisible;
+            set => SetProperty(ref _isCollectionViewVisible, value);
         }
 
         public Command CarregarSugestoesCommand { get; }
@@ -79,10 +94,15 @@ namespace DesafioXamarin.ViewModels
                 List<Departamento> result = Database.GetDepartamentos(true);
                 List<string> parcialList = new List<string>();
 
-                foreach (Departamento departamento in result)
+                if (result.Count > 0)
                 {
-                    parcialList.Add(departamento.NomeDepartamento);
+
+                    foreach (Departamento departamento in result)
+                    {
+                        parcialList.Add(departamento.NomeDepartamento);
+                    }
                 }
+
                 parcialList.Add("Todos");
                 Departamentos = new ObservableCollection<string>(parcialList);
             }
@@ -100,11 +120,22 @@ namespace DesafioXamarin.ViewModels
             {
                 Items.Clear();
 
+                IsCollectionViewVisible = true;
+                IsSemSugestoesMsgVisible = false;
+
                 var items = Database.GetSugestoes(true);
 
-                foreach (var item in items)
+                if (items.Count > 0)
                 {
-                    Items.Add(item);
+                    foreach (var item in items)
+                    {
+                        Items.Add(item);
+                    }
+                }
+                else
+                {
+                    IsCollectionViewVisible = false;
+                    IsSemSugestoesMsgVisible = true;
                 }
             }
             catch (Exception ex)
