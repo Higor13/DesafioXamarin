@@ -22,70 +22,159 @@ namespace DesafioXamarin.Services
 
         public async Task<bool> AddSugestaoAsync(Sugestao item)
         {
-            _connection.Insert(item);
-            return await Task.FromResult(true);
+            try
+            {
+                _connection.Insert(item);
+                return await Task.FromResult(true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+            
         }
 
         public async Task<bool> UpdateSugestaoAsync(Sugestao item)
         {
-            var oldItem = sugestoesList.Where((Sugestao arg) => arg.Id == item.Id).FirstOrDefault();
-            sugestoesList.Remove(oldItem);
-            sugestoesList.Add(item);
+            try
+            {
+                var oldItem = sugestoesList.Where((Sugestao arg) => arg.Id == item.Id).FirstOrDefault();
+                sugestoesList.Remove(oldItem);
+                sugestoesList.Add(item);
 
-            return await Task.FromResult(true);
+                return await Task.FromResult(true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
 
         public async Task<bool> DeleteSugestaoAsync(int id)
         {
-            var oldItem = sugestoesList.Where((Sugestao arg) => arg.Id == id).FirstOrDefault();
-            sugestoesList.Remove(oldItem);
+            try
+            {
+                var oldItem = sugestoesList.Where((Sugestao arg) => arg.Id == id).FirstOrDefault();
+                sugestoesList.Remove(oldItem);
 
-            return await Task.FromResult(true);
+                return await Task.FromResult(true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
 
         public Sugestao GetSugestao(int id)
         {
-            return _connection.Get<Sugestao>(id);
+            try
+            {
+                return _connection.Get<Sugestao>(id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
 
         public List<Sugestao> GetSugestoes(bool forceRefresh = false)
         {
-            return _connection.Table<Sugestao>().ToList();
+            try
+            {
+                return _connection.Table<Sugestao>().ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
 
         public async Task<bool> AddDepartamentoAsync(Departamento item)
         {
-            _connection.Insert(item);
-            return await Task.FromResult(true);
+            try
+            {
+                _connection.Insert(item);
+                return await Task.FromResult(true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
 
         public async Task<bool> DeleteDepartamentoAsync(int id)
         {
-            _connection.Delete<Departamento>(id);
+            try
+            {
+                _connection.Delete<Departamento>(id);
 
-            return await Task.FromResult(true);
+                return await Task.FromResult(true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
 
         public Departamento GetDepartamento(int id)
         {
-            return _connection.Get<Departamento>(id);
+            try
+            {
+                return _connection.Get<Departamento>(id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
 
         public List<Departamento> GetDepartamentos(bool forceRefresh = false)
         {
-            return _connection.Table<Departamento>().ToList();
+            try
+            {
+                return _connection.Table<Departamento>().ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
 
         public async Task<bool> UpdateDepartamentoAsync(Departamento item)
         {
-            _connection.Update(item);
+            try
+            {
+                _connection.Update(item);
 
-            return await Task.FromResult(true);
+                return await Task.FromResult(true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
 
         public List<Sugestao> GetSugestoesPorDepartamento(string departamento)
         {
-            return _connection.Query<Sugestao>($"SELECT * FROM Sugestao WHERE Departamento == {departamento}").ToList();
+            try
+            {
+                return _connection.Query<Sugestao>($"SELECT * FROM Sugestao WHERE Departamento = '{departamento}'").ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
     }
 }
