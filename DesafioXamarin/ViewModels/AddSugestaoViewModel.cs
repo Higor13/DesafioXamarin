@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -59,10 +60,11 @@ namespace DesafioXamarin.ViewModels
         public AddSugestaoViewModel()
         {
             Departamentos = new ObservableCollection<string>();
+
             CarregarDepartamentos();
 
-            SalvarCommand = new Command(SalvarAsync, ValidateSave);
-            CancelarCommand = new Command(CancelarAsync);
+            SalvarCommand = new Command(async () => await SalvarAsync(), ValidateSave);
+            CancelarCommand = new Command(async () => await CancelarAsync());
 
             this.PropertyChanged +=
                 (_, __) => SalvarCommand.ChangeCanExecute();
@@ -86,7 +88,7 @@ namespace DesafioXamarin.ViewModels
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex);
             }
         }
 
@@ -94,15 +96,16 @@ namespace DesafioXamarin.ViewModels
         {
             return !String.IsNullOrWhiteSpace(_nome)
                 && !String.IsNullOrWhiteSpace(_sugestao)
-                && !String.IsNullOrWhiteSpace(_justificativa);
+                && !String.IsNullOrWhiteSpace(_justificativa)
+                && !String.IsNullOrWhiteSpace(_departamento);
         }
 
-        private async void CancelarAsync()
+        private async Task CancelarAsync()
         {
             await Shell.Current.GoToAsync("..");
         }
 
-        private async void SalvarAsync()
+        private async Task SalvarAsync()
         {
             Sugestao novoItem = new Sugestao()
             {
