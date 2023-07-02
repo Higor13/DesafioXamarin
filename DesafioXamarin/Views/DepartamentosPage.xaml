@@ -15,45 +15,53 @@
     <RefreshView
         Command="{Binding CarregarDepartamentosCommand}"
         IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView
-            x:Name="collectionView"
-            ItemsSource="{Binding Departamentos}"
-            SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout
-                        Padding="5">
-                        <SwipeView>
-                            <SwipeView.RightItems>
-                                <SwipeItems>
-                                    <SwipeItem
-                                        Text="Editar"
-                                        BackgroundColor="Green"
-                                        Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.EditarDepartamentoCommand}"
-                                        CommandParameter="{Binding .}" />
-                                    <SwipeItem
-                                        Text="Excluir"
-                                        BackgroundColor="Red"
-                                        Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.ExcluirDepartamentoCommand}"
-                                        CommandParameter="{Binding .}" />
-                                </SwipeItems>
-                            </SwipeView.RightItems>
-                            <Frame
-                                Padding="0"
-                                HeightRequest="60"
-                                BorderColor="Gray"
-                                x:DataType="model:Departamento">
-                                <Label
-                                    HorizontalTextAlignment="Center"
-                                    VerticalTextAlignment="Center"
-                                    Text="{Binding NomeDepartamento}"
-                                    FontSize="16" />
-                            </Frame>
-                        </SwipeView>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <Grid>
+            <Label
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"
+                Text="Não há departamentos cadastrados."
+                IsVisible="{Binding IsSemDepartamentosMsg}"/>
+            <CollectionView
+                IsVisible="{Binding IsCollectionViewVisible}"
+                x:Name="collectionView"
+                ItemsSource="{Binding Departamentos}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout
+                            Padding="5">
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                            Text="Editar"
+                                            BackgroundColor="Green"
+                                            Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.EditarDepartamentoCommand}"
+                                            CommandParameter="{Binding .}" />
+                                        <SwipeItem
+                                            Text="Excluir"
+                                            BackgroundColor="Red"
+                                            Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.ExcluirDepartamentoCommand}"
+                                            CommandParameter="{Binding .}" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Frame
+                                    Padding="0"
+                                    HeightRequest="60"
+                                    BorderColor="Gray"
+                                    x:DataType="model:Departamento">
+                                    <Label
+                                        HorizontalTextAlignment="Center"
+                                        VerticalTextAlignment="Center"
+                                        Text="{Binding NomeDepartamento}"
+                                        FontSize="16" />
+                                </Frame>
+                            </SwipeView>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </RefreshView>
     
 </ContentPage>

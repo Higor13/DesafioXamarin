@@ -13,6 +13,27 @@ namespace DesafioXamarin.ViewModels
     {
         public ObservableCollection<Departamento> Departamentos { get; }
 
+        private string _semDepartamentosMsg;
+        public string SemDepartamentosMsg
+        {
+            get => _semDepartamentosMsg;
+            set => SetProperty(ref _semDepartamentosMsg, value);
+        }
+
+        private bool _isSemDepartamentosMsg;
+        public bool IsSemDepartamentosMsg
+        {
+            get => _isSemDepartamentosMsg;
+            set => SetProperty(ref _isSemDepartamentosMsg, value);
+        }
+
+        private bool _isCollectionViewVisible;
+        public bool IsCollectionViewVisible
+        {
+            get => _isCollectionViewVisible;
+            set => SetProperty(ref _isCollectionViewVisible, value);
+        }
+
         public Command CarregarDepartamentosCommand { get; }
         public Command AddDepartamentoCommand { get; }
         public Command EditarDepartamentoCommand { get; }
@@ -68,10 +89,23 @@ namespace DesafioXamarin.ViewModels
             {
                 Departamentos.Clear();
                 var items = Database.GetDepartamentos(true);
-                foreach (var item in items)
+
+                if(items.Count > 0)
                 {
-                    Departamentos.Add(item);
+                    IsCollectionViewVisible = true;
+                    IsSemDepartamentosMsg = false;
+
+                    foreach (var item in items)
+                    {
+                        Departamentos.Add(item);
+                    }
                 }
+                else
+                {
+                    IsCollectionViewVisible = false;
+                    IsSemDepartamentosMsg = true;
+                }
+                
             }
             catch (Exception ex)
             {
