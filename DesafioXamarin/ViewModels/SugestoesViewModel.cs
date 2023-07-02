@@ -19,17 +19,6 @@ namespace DesafioXamarin.ViewModels
             set => SetProperty(ref _departamentos, value);
         }
 
-        private Sugestao _selectedItem;
-        public Sugestao SelectedItem
-        {
-            get => _selectedItem;
-            set
-            {
-                SetProperty(ref _selectedItem, value);
-                OnSugestaoSelecionada(value);
-            }
-        }
-
         private string _departamento;
         public string Departamento
         {
@@ -46,7 +35,7 @@ namespace DesafioXamarin.ViewModels
 
         public Command CarregarSugestoesCommand { get; }
         public Command AddSugestaoCommand { get; }
-        public Command<Sugestao> SugestaoSelecionada { get; }
+        public Command<Sugestao> SugestaoSelecionadaCommand { get; }
         public Command FiltrarCommand { get; }
 
         public SugestoesViewModel()
@@ -55,7 +44,7 @@ namespace DesafioXamarin.ViewModels
             Items = new ObservableCollection<Sugestao>();
 
             CarregarSugestoesCommand = new Command(CarregarSugestoes);
-            SugestaoSelecionada = new Command<Sugestao>(OnSugestaoSelecionada);
+            SugestaoSelecionadaCommand = new Command<Sugestao>(async (item) => await OnSugestaoSelecionadaAsync(item));
             FiltrarCommand = new Command(FiltarPorDepartamento);
             AddSugestaoCommand = new Command(async () => await AddSugestaoAsync());
         }
@@ -132,7 +121,6 @@ namespace DesafioXamarin.ViewModels
         public void OnAppearing()
         {
             IsBusy = true;
-            SelectedItem = null;
 
             CarregarDepartamentos();
         }
@@ -142,7 +130,7 @@ namespace DesafioXamarin.ViewModels
             await Shell.Current.GoToAsync(nameof(AddSugestaoPage));
         }
 
-        async void OnSugestaoSelecionada(Sugestao item)
+        async Task OnSugestaoSelecionadaAsync(Sugestao item)
         {
             if (item == null)
                 return;
