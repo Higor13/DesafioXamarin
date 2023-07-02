@@ -1,9 +1,6 @@
-﻿using DesafioXamarin.Enums;
-using DesafioXamarin.Models;
-using DesafioXamarin.Views;
+﻿using DesafioXamarin.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace DesafioXamarin.ViewModels
@@ -22,7 +19,7 @@ namespace DesafioXamarin.ViewModels
 
         public AddDepartamentoViewModel()
         {
-            SalvarCommand = new Command(SalvarAsync, ValidateSave);
+            SalvarCommand = new Command(async () => await SalvarAsync(), ValidateSave);
             CancelarCommand = new Command(CancelarAsync);
 
             this.PropertyChanged +=
@@ -39,7 +36,7 @@ namespace DesafioXamarin.ViewModels
             await Shell.Current.GoToAsync("..");
         }
 
-        private async void SalvarAsync()
+        private async Task SalvarAsync()
         {
             try
             {
