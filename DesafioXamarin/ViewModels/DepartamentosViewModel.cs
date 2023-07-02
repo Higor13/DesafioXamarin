@@ -2,11 +2,9 @@
 using DesafioXamarin.Views;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace DesafioXamarin.ViewModels
@@ -15,25 +13,18 @@ namespace DesafioXamarin.ViewModels
     {
         public ObservableCollection<Departamento> Departamentos { get; }
 
-        public Command LoadItemsCommand { get; }
+        public Command CarregarDepartamentosCommand { get; }
         public Command AddDepartamentoCommand { get; }
         public Command EditarDepartamentoCommand { get; }
         public Command ExcluirDepartamentoCommand { get; }
 
         public DepartamentosViewModel()
         {
-            Task.Run(async () => await Database.AddDepartamentoAsync(new Departamento { NomeDepartamento = "Administrativo" }));
-            Task.Run(async () => await Database.AddDepartamentoAsync(new Departamento { NomeDepartamento = "Comercial" }));
-            Task.Run(async () => await Database.AddDepartamentoAsync(new Departamento { NomeDepartamento = "Financeiro" }));
-            Task.Run(async () => await Database.AddDepartamentoAsync(new Departamento { NomeDepartamento = "RH" }));
-            Task.Run(async () => await Database.AddDepartamentoAsync(new Departamento { NomeDepartamento = "TI" }));
-            Task.Run(async () => await Database.AddDepartamentoAsync(new Departamento { NomeDepartamento = "Producao" }));
-
-            ExecuteLoadItemsCommand();
+            CarregarDepartamentos();
 
             Departamentos = new ObservableCollection<Departamento>();
 
-            LoadItemsCommand = new Command(ExecuteLoadItemsCommand);
+            CarregarDepartamentosCommand = new Command(CarregarDepartamentos);
 
             AddDepartamentoCommand = new Command(AddDepartamentoAsync);
             EditarDepartamentoCommand = new Command<Departamento>(async (departamento) => await EditarDepartamentoAsync(departamento));
@@ -60,7 +51,7 @@ namespace DesafioXamarin.ViewModels
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex);
             }
         }
 
@@ -69,7 +60,7 @@ namespace DesafioXamarin.ViewModels
             IsBusy = true;
         }
 
-        void ExecuteLoadItemsCommand()
+        void CarregarDepartamentos()
         {
             IsBusy = true;
 

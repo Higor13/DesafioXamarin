@@ -13,7 +13,7 @@
     </ContentPage.ToolbarItems>
 
     <RefreshView
-        Command="{Binding LoadItemsCommand}"
+        Command="{Binding CarregarDepartamentosCommand}"
         IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <CollectionView
             x:Name="collectionView"
