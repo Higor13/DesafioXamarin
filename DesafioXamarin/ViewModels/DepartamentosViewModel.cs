@@ -13,13 +13,6 @@ namespace DesafioXamarin.ViewModels
     {
         public ObservableCollection<Departamento> Departamentos { get; }
 
-        private string _semDepartamentosMsg;
-        public string SemDepartamentosMsg
-        {
-            get => _semDepartamentosMsg;
-            set => SetProperty(ref _semDepartamentosMsg, value);
-        }
-
         private bool _isSemDepartamentosMsg;
         public bool IsSemDepartamentosMsg
         {
