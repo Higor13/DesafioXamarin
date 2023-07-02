@@ -1,6 +1,4 @@
-﻿using System;
-using DesafioXamarin.Enums;
-using SQLite;
+﻿using SQLite;
 
 namespace DesafioXamarin.Models
 {

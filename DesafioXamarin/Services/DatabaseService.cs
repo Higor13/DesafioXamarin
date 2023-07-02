@@ -1,5 +1,4 @@
-﻿using DesafioXamarin.Enums;
-using DesafioXamarin.Interfaces;
+﻿using DesafioXamarin.Interfaces;
 using DesafioXamarin.Models;
 using SQLite;
 using System;
