@@ -26,7 +26,7 @@ namespace DesafioXamarin.ViewModels
 
             CarregarDepartamentosCommand = new Command(CarregarDepartamentos);
 
-            AddDepartamentoCommand = new Command(AddDepartamentoAsync);
+            AddDepartamentoCommand = new Command(async () => await AddDepartamentoAsync());
             EditarDepartamentoCommand = new Command<Departamento>(async (departamento) => await EditarDepartamentoAsync(departamento));
             ExcluirDepartamentoCommand = new Command<Departamento>(async (departamento) => await ExcluirDepartamentoAsync(departamento));
         }
@@ -83,7 +83,7 @@ namespace DesafioXamarin.ViewModels
             }
         }
 
-        private async void AddDepartamentoAsync()
+        private async Task AddDepartamentoAsync()
         {
             await Shell.Current.GoToAsync(nameof(AddDepartamentoPage));
         }
