@@ -20,7 +20,7 @@
         <Grid
             RowDefinitions="*,13*">
             <Picker
-                Title="Filtar por departamento"
+                Title="Filtrar por departamento"
                 SelectedItem="{Binding Departamento, Mode=TwoWay}"
                 ItemsSource="{Binding Departamentos}">
                 <Picker.Behaviors>
