@@ -75,15 +75,14 @@ namespace DesafioXamarin.ViewModels
                 
                 Items.Clear();
 
-                if(Departamento == "Todos")
+                if(Preferences.Get("departamentoFiltroSelecionado", string.Empty) == "Todos")
                 {
                     CarregarSugestoes();
                 }
                 else if(!string.IsNullOrEmpty(Preferences.Get("departamentoFiltroSelecionado", string.Empty)))
                 {
                     Departamento = Preferences.Get("departamentoFiltroSelecionado", string.Empty);
-                    List<Sugestao> result = Database.GetSugestoesPorDepartamento(Preferences.Get("departamentoFiltroSelecionado", string.Empty));
-                    Items = new ObservableCollection<Sugestao>(result);
+                    CarregarSugestoesPorFiltro();
                 }
                 else
                 {
@@ -93,6 +92,54 @@ namespace DesafioXamarin.ViewModels
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+            }
+        }
+
+        void CarregarSugestoesPorFiltro()
+        {
+            IsBusy = true;
+
+            try
+            {
+                Items.Clear();
+
+                IsCollectionViewVisible = true;
+                IsSemSugestoesMsgVisible = false;
+
+                List<Sugestao> result = Database.GetSugestoesPorDepartamento(Preferences.Get("departamentoFiltroSelecionado", string.Empty));
+
+                ChecarQuantidadeSugestoes(result);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private void ChecarQuantidadeSugestoes(List<Sugestao> result)
+        {
+            try
+            {
+                if (result.Count > 0)
+                {
+                    foreach (var item in result)
+                    {
+                        Items.Add(item);
+                    }
+                }
+                else
+                {
+                    IsCollectionViewVisible = false;
+                    IsSemSugestoesMsgVisible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
             }
         }
 
@@ -136,18 +183,7 @@ namespace DesafioXamarin.ViewModels
 
                 var items = Database.GetSugestoes(true);
 
-                if (items.Count > 0)
-                {
-                    foreach (var item in items)
-                    {
-                        Items.Add(item);
-                    }
-                }
-                else
-                {
-                    IsCollectionViewVisible = false;
-                    IsSemSugestoesMsgVisible = true;
-                }
+                ChecarQuantidadeSugestoes(items);
             }
             catch (Exception ex)
             {
