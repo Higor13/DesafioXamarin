@@ -13,7 +13,7 @@
             Padding="15">
             <StackLayout>
                 <Label
-                    Text="Titulo:"
+                    Text="Título:"
                     FontSize="Medium"/>
                 <Label
                     Text="{Binding Titulo}" />
@@ -34,7 +34,7 @@
             </StackLayout>
             <StackLayout>
                 <Label
-                    Text="Descricao:"
+                    Text="Descrição:"
                     FontSize="Medium"/>
                 <Label
                     Text="{Binding Sugestao}" />

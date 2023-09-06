@@ -34,44 +34,11 @@ namespace DesafioXamarin.Services
             
         }
 
-        public async Task<bool> UpdateSugestaoAsync(Sugestao item)
-        {
-            try
-            {
-                var oldItem = sugestoesList.Where((Sugestao arg) => arg.Id == item.Id).FirstOrDefault();
-                sugestoesList.Remove(oldItem);
-                sugestoesList.Add(item);
-
-                return await Task.FromResult(true);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                throw;
-            }
-        }
-
-        public async Task<bool> DeleteSugestaoAsync(int id)
-        {
-            try
-            {
-                var oldItem = sugestoesList.Where((Sugestao arg) => arg.Id == id).FirstOrDefault();
-                sugestoesList.Remove(oldItem);
-
-                return await Task.FromResult(true);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                throw;
-            }
-        }
-
         public Sugestao GetSugestao(int id)
         {
             try
             {
-                return _connection.Get<Sugestao>(id);
+                return _connection.Query<Sugestao>($"SELECT * FROM Sugestao WHERE Id = {id}").FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -84,7 +51,7 @@ namespace DesafioXamarin.Services
         {
             try
             {
-                return _connection.Table<Sugestao>().ToList();
+                return _connection.Query<Sugestao>("SELECT * FROM Sugestao").ToList();
             }
             catch (Exception ex)
             {
@@ -97,7 +64,7 @@ namespace DesafioXamarin.Services
         {
             try
             {
-                _connection.Insert(item);
+                _connection.Query<Sugestao>($"INSERT INTO Departamento (NomeDepartamento) VALUES ('{item.NomeDepartamento}')");
                 return await Task.FromResult(true);
             }
             catch (Exception ex)

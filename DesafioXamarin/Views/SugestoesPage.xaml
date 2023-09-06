@@ -17,10 +17,9 @@
         x:DataType="local:SugestoesViewModel"
         Command="{Binding CarregarSugestoesCommand}"
         IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <Grid
-            RowDefinitions="*,13*">
+        <StackLayout>
             <Picker
-                Title="Filtar por departamento"
+                Title="Filtrar por departamento"
                 SelectedItem="{Binding Departamento, Mode=TwoWay}"
                 ItemsSource="{Binding Departamentos}">
                 <Picker.Behaviors>
@@ -32,13 +31,12 @@
             </Picker>
 
             <Label
-                Grid.Row="1"
+                Margin="0,20,0,0"
                 VerticalTextAlignment="Center"
                 HorizontalTextAlignment="Center"
-                Text="Não há sugestões cadastrados."
+                Text="Não há sugestões cadastradas."
                 IsVisible="{Binding IsSemSugestoesMsgVisible}" />
             <CollectionView
-                Grid.Row="1"
                 IsVisible="{Binding IsCollectionViewVisible}"
                 Margin="5"
                 x:Name="ItemsListView"
@@ -84,6 +82,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </Grid>
+        </StackLayout>
     </RefreshView>
 </ContentPage>
