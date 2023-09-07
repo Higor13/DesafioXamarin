@@ -24,7 +24,7 @@
             Spacing="10">
             <Label
                 HorizontalOptions="Center"
-                Text="Bem vindo!"
+                Text="Bem vindes!"
                 FontSize="Title"/>
             <Label
                 Text="Seu app de sugestões empresariais."
